@@ -1,0 +1,108 @@
+*{
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header{
+    width: 80%;
+    display: flex;
+    background-color: black;
+    margin: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 50px;
+}
+header div{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+header a{
+    color: white;
+}
+.main-logo{
+    width: 35px;
+}
+.a-logo, #label-search, .catalog{
+    margin: 10px 20px 10px 20px;
+}
+.a-logo{
+    margin-left: 40px
+}
+.catalog{
+    border: solid 1px white;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+}
+#label-search, #search, .lupa{
+    cursor: pointer;
+}
+#label-search{
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+}
+#search{
+    font-size: 16px;
+    margin: 5px;
+    border: none;
+}
+.lupa{
+    margin: 5px;
+    border: none;
+    background-color: white;
+    background-image: url(images/lupa.png);
+    background-size: 25px;
+    height: 28px;
+}
+.a-favourites, .a-cart, .a-profil{
+    margin: 10px;
+}
+.lupa, .favourites, .cart, .profil{
+    width: 25px;
+}
+.favourites{
+    height: 20px;
+    padding: 5px 0 5px 0;
+}
+.cart{
+    height: 24px;
+    padding: 3px 0 3px 0;
+}
+.profil{
+    height: 30px;
+    padding-top: 0px;
+}
+.a-profil{
+    margin-right: 40px;
+}
+/* ----------------- */
+footer{
+    display: flex;
+    justify-content: space-around;
+    background-color: black;
+    width: 100%;
+    color: white;
+    position: absolute;
+    bottom: 0;
+}
+footer img{
+    width: 50px;
+}
+footer section{
+    margin: 20px;
+}
+.youtube{
+    padding: 7px 0 7px 0;
+}
+.qr-code{
+    width: 100px;
+    margin: 20px
+}
