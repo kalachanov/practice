@@ -38,7 +38,8 @@ header a{
 .catalog{
     border: solid 1px white;
     padding: 5px 10px 5px 10px;
-    border-radius: 10px;
+    border-radius: 7px;
+    font-size: 24px;
 }
 #label-search, #search, .lupa{
     cursor: pointer;
@@ -87,22 +88,23 @@ header a{
 footer{
     display: flex;
     justify-content: space-around;
-    background-color: black;
+    align-items: center;
+    background-color: #121212;
     width: 100%;
     color: white;
     position: absolute;
     bottom: 0;
 }
 footer img{
-    width: 50px;
+    width: 25px;
 }
 footer section{
     margin: 20px;
 }
 .youtube{
-    padding: 7px 0 7px 0;
+    padding: 4px 0 3px 0;
 }
 .qr-code{
     width: 100px;
-    margin: 20px
+    height: 100px;
 }
