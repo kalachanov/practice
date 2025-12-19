@@ -98,9 +98,9 @@ class Product(db.Model):
     third_categories = db.relationship('Third_Category', backref='products', lazy='dynamic')
         
     name = db.Column(db.String(80), unique=True, nullable=False)
-    description = db.Column(db.Text)
-    characteristics = db.Column(db.Text)
-    photo = db.Column(db.Text)
+    description = db.Column(db.Text) # URL или че там, текст?
+    characteristics = db.Column(db.Text) # URL или че там, текст или JSON?
+    photo = db.Column(db.Text) # URL файл фото же
     quantity = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     
@@ -114,21 +114,54 @@ class Product(db.Model):
     def __repr__(self):
         return f'<Product {self.name}>'
     
-class Favorite:
-    __tablename__ = 'favorites'
-    pass
 class Favorite_Product(db.Model):
     __tablename__ = 'favorites_products'
-    pass
-class Cars(db.Model):
-    __tablename__ = 'cars'
-    pass
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id_user = db.Column(db.Integer, db.ForeignKey(User.id))
+    id_product = db.Column(db.Integer, db.ForeignKey(Product.id))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    
+    def __init__(self, id_user, id_product):
+        self.id_user = id_user
+        self.id_product = id_product
+        
+    def __repr__(self):
+        return f'<Favorite_Product {self.id}>'
+
+    
 class Cars_Product(db.Model):
     __tablename__ = 'cars_products'
-    pass
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id_user = db.Column(db.Integer, db.ForeignKey(User.id))
+    id_product = db.Column(db.Integer, db.ForeignKey(Product.id))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    quantity = db.Column(db.Integer)
+    
+    def __init__(self, id_user, id_product, quantity=None):
+        self.id_user = id_user
+        self.id_product = id_product
+        self.quantity = quantity
+        
+    def __repr__(self):
+        return f'<Cars_Product {self.name}>'
+
+    
 class Comment(db.Model):
     __tablename__ = 'comments'
-    pass
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id_user = db.Column(db.Integer, db.ForeignKey(User.id))
+    id_product = db.Column(db.Integer, db.ForeignKey(Product.id))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    text = db.Column(db.Text)
+
+    def __init__(self, id_user, id_product, text):
+        self.id_user = id_user
+        self.id_product = id_product
+        self.text = text
+
+    def __repr__(self):
+        return f'<Comment {self.text}>'
+
 
 if __name__ == "__main__":
     from flask import Flask
@@ -138,5 +171,5 @@ if __name__ == "__main__":
     
     # Теперь можно работать с БД в контексте приложения
     with app.app_context():
+        pass
         
-        print(User.query.all())
