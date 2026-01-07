@@ -25,7 +25,8 @@ class User(db.Model):
     comments = db.relationship('Comment', backref='user', lazy=True,
                               cascade='all, delete-orphan')
     
-    def __init__(self, username, password, first_name=None, second_name=None, email=None, phone=None):
+    def __init__(self, username: str, password: str, first_name: str | None, 
+                 second_name: str | None, email: str | None, phone: str | None):
         self.username = username
         self.email = email
         self.phone = phone
@@ -48,7 +49,7 @@ class Category(db.Model):
     second_categories = db.relationship('SecondCategory', backref='category', lazy=True,
                                        cascade='all, delete-orphan')
     
-    def __init__(self, name, description):
+    def __init__(self, name: str, description: str):
         self.name = name
         self.description = description
         
@@ -68,7 +69,7 @@ class SecondCategory(db.Model):
     third_categories = db.relationship('ThirdCategory', backref='second_category', lazy=True,
                                       cascade='all, delete-orphan')
     
-    def __init__(self, name, description, category_id):
+    def __init__(self, name: str, description: str, category_id: int):
         self.name = name
         self.description = description
         self.category_id = category_id
@@ -89,7 +90,7 @@ class ThirdCategory(db.Model):
     products = db.relationship('Product', backref='third_category', lazy=True,
                               cascade='all, delete-orphan')
     
-    def __init__(self, name, description, second_category_id):
+    def __init__(self, name: str, description: str, second_category_id: int):
         self.name = name
         self.description = description
         self.second_category_id = second_category_id
@@ -118,8 +119,8 @@ class Product(db.Model):
     comments = db.relationship('Comment', backref='product', lazy=True,
                               cascade='all, delete-orphan')
     
-    def __init__(self, name, third_category_id=None, description=None, 
-                 characteristics=None, photo=None, quantity=0):
+    def __init__(self, name: str, third_category_id: int | None, description: str | None, 
+                 characteristics: str | None, photo: str | None, quantity: int | 0):
         self.name = name
         self.third_category_id = third_category_id
         self.description = description
@@ -139,7 +140,7 @@ class FavoriteProduct(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('products.id', ondelete='CASCADE'), nullable=False, index=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, index=True)
     
-    def __init__(self, user_id, product_id):
+    def __init__(self, user_id: int, product_id: int):
         self.user_id = user_id
         self.product_id = product_id
         
@@ -156,7 +157,7 @@ class CartProduct(db.Model):
     quantity = db.Column(db.Integer, nullable=False, default=1)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, index=True)
     
-    def __init__(self, user_id, product_id):
+    def __init__(self, user_id: int, product_id: int):
         self.user_id = user_id
         self.product_id = product_id
         
@@ -173,7 +174,7 @@ class Comment(db.Model):
     text = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, index=True)
     
-    def __init__(self, user_id, product_id, text):
+    def __init__(self, user_id: int, product_id: int, text: str):
         self.user_id = user_id
         self.product_id = product_id
         self.text = text
