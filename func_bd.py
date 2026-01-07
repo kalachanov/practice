@@ -10,7 +10,26 @@ db.init_app(app)
 
 class user:
     class bd_user:
-        pass
+        @staticmethod
+        def registration(username: str, password: str, first_name: str = None, 
+                 second_name: str = None, email: str = None, phone: str = None):
+            try:
+                user = User(username, password, first_name, 
+                 second_name, email, phone)
+                db.session.add(user)
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        # @staticmethod
+        # def login(username: str, password: str, email: str = None, phone: str = None):
+        #     try:
+                
+        #         return db.Query.select_from(User).filter(User.username == username and User.password == password)
+        #     except Exception as e:
+        #         return f'Произошла ошибка:\n{e}' 
+                   
     class bd_cart_product:
         pass
     class bd_favorite_product:
@@ -27,11 +46,8 @@ class admin(user):
         pass
     class bd_product:
         pass
-
-
+if __name__ == "__main__":
     
-
-
-
-with app.app_context():
-    pass
+    with app.app_context():
+        pass
+        # print(user.bd_user.login('Funf', '1234',))

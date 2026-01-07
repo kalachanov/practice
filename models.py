@@ -25,12 +25,12 @@ class User(db.Model):
     comments = db.relationship('Comment', backref='user', lazy=True,
                               cascade='all, delete-orphan')
     
-    def __init__(self, username: str, password: str, first_name: str | None, 
-                 second_name: str | None, email: str | None, phone: str | None):
+    def __init__(self, username: str, password: str, first_name: str = None, 
+                 second_name: str = None, email: str = None, phone: str = None):
         self.username = username
+        self.password = password
         self.email = email
         self.phone = phone
-        self.password = password
         self.first_name = first_name
         self.second_name = second_name
         
@@ -119,8 +119,8 @@ class Product(db.Model):
     comments = db.relationship('Comment', backref='product', lazy=True,
                               cascade='all, delete-orphan')
     
-    def __init__(self, name: str, third_category_id: int | None, description: str | None, 
-                 characteristics: str | None, photo: str | None, quantity: int | 0):
+    def __init__(self, name: str, third_category_id: int, description: str = None, 
+                 characteristics: str = None, photo: str = None, quantity: int = 0):
         self.name = name
         self.third_category_id = third_category_id
         self.description = description

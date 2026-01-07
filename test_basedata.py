@@ -11,7 +11,4 @@ if __name__ == "__main__":
     db.init_app(app)
     
     with app.app_context():
-        user = Comment(1,1,'ненавижу айфоны')
-        db.session.add(user)
-        db.session.commit()
-        print("База данных успешно создана!")
+        print(db.Query(User).filter(User.username == 'Funf').scalar())
