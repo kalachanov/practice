@@ -22,13 +22,30 @@ class user:
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
             
-        # @staticmethod
-        # def login(username: str, password: str, email: str = None, phone: str = None):
-        #     try:
-                
-        #         return db.Query.select_from(User).filter(User.username == username and User.password == password)
-        #     except Exception as e:
-        #         return f'Произошла ошибка:\n{e}' 
+        @staticmethod
+        def login(password: str, username: str = None, email: str = None, phone: str = None):
+            try:
+                if username and User.query\
+                    .filter(User.username == username, User.password == password).first():
+                    return True
+                if email and User.query\
+                    .filter(User.email == email, User.password == password).first():
+                    return True
+                if phone and User.query\
+                    .filter(User.phone == phone, User.password == password).first():
+                    return True
+                else:
+                    return False
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}' 
+        @staticmethod
+        def get_by_username(username: str):
+            try:
+                user = User.query\
+                    .filter(User.username == username).first()
+                return user
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}' 
                    
     class bd_cart_product:
         pass
@@ -50,4 +67,4 @@ if __name__ == "__main__":
     
     with app.app_context():
         pass
-        # print(user.bd_user.login('Funf', '1234',))
+        print(user.bd_user.get_by_username('Funf'))
