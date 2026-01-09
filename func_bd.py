@@ -102,7 +102,72 @@ class user:
                 return f'Произошла ошибка:\n{e}'  
                    
     class bd_cart_product:
-        pass
+        @staticmethod
+        def add_product(user_id: int, product_id: int):
+            try:
+                cart = CartProduct(user_id, product_id)
+                db.session.add(cart)
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+        @staticmethod
+        def delete_by_id(id: int):
+            try:
+                cart = CartProduct.query\
+                    .filter(CartProduct.id == id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+        @staticmethod
+        def get_by_id(id: int):
+            try:
+                cart = CartProduct.query\
+                    .filter(CartProduct.id == id).first()
+                return cart
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+        @staticmethod
+        def quantity_plus_by_id(id: int):
+            try:
+                cart = CartProduct.query\
+                    .filter(CartProduct.id == id).first()
+                cart.quantity = cart.quantity+1
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+        @staticmethod
+        def quantity_minus_by_id(id: int):
+            try:
+                cart = CartProduct.query\
+                    .filter(CartProduct.id == id).first()
+                if cart.quantity==1:
+                    cart = CartProduct.query\
+                    .filter(CartProduct.id == id).delete()
+                    db.session.commit()
+                    return True
+                else:
+                    cart.quantity = cart.quantity-1
+                    db.session.commit()
+                    return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+        @staticmethod
+        def quantity_change(id: int, number: int):
+            try:
+                cart = CartProduct.query\
+                    .filter(CartProduct.id == id).first()
+                if number <= 0:
+                    return False
+                else:
+                    cart.quantity = number
+                    db.session.commit()
+                    return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
     class bd_favorite_product:
         pass
     class bd_comment:
@@ -121,4 +186,4 @@ if __name__ == "__main__":
     
     with app.app_context():
         pass
-        print(admin.bd_user.change_by_id(id=4, email='XXX@gmail'))
+        print(admin.bd_cart_product.quantity_change(1, 0))
