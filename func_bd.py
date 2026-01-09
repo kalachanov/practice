@@ -169,7 +169,32 @@ class user:
                 return f'Произошла ошибка:\n{e}'
             
     class bd_favorite_product:
-        pass
+        @staticmethod
+        def add_product(user_id: int, product_id: int):
+            try:
+                favorite = FavoriteProduct(user_id, product_id)
+                db.session.add(favorite)
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+        @staticmethod
+        def delete_by_id(id: int):
+            try:
+                favorite = FavoriteProduct.query\
+                    .filter(FavoriteProduct.id == id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+        @staticmethod
+        def get_by_id(id: int):
+            try:
+                favorite = FavoriteProduct.query\
+                    .filter(FavoriteProduct.id == id).first()
+                return favorite
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
     class bd_comment:
         pass
 
