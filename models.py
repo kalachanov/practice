@@ -15,6 +15,8 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)  # Для хэшированных паролей
     first_name = db.Column(db.String(20))
     second_name = db.Column(db.String(20))
+    admin = db.Column(db.Integer(1))
+    mute = db.Column(db.Integer(1))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     # Отношения

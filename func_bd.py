@@ -10,6 +10,7 @@ db.init_app(app)
 
 class user:
     class bd_user:
+        
         @staticmethod
         def registration(username: str, password: str, first_name: str = None, 
                  second_name: str = None, email: str = None, phone: str = None):
@@ -101,7 +102,9 @@ class user:
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'  
                    
+                   
     class bd_cart_product:
+        
         @staticmethod
         def add_product(user_id: int, product_id: int):
             try:
@@ -111,6 +114,7 @@ class user:
                 return True
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+            
         @staticmethod
         def delete_by_id(id: int):
             try:
@@ -120,6 +124,7 @@ class user:
                 return True
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+            
         @staticmethod
         def get_by_id(id: int):
             try:
@@ -128,6 +133,7 @@ class user:
                 return cart
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+            
         @staticmethod
         def quantity_plus_by_id(id: int):
             try:
@@ -138,6 +144,7 @@ class user:
                 return True
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+            
         @staticmethod
         def quantity_minus_by_id(id: int):
             try:
@@ -154,6 +161,7 @@ class user:
                     return True
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+            
         @staticmethod
         def quantity_change(id: int, number: int):
             try:
@@ -168,7 +176,9 @@ class user:
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
             
+            
     class bd_favorite_product:
+        
         @staticmethod
         def add_product(user_id: int, product_id: int):
             try:
@@ -178,6 +188,7 @@ class user:
                 return True
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+            
         @staticmethod
         def delete_by_id(id: int):
             try:
@@ -187,6 +198,7 @@ class user:
                 return True
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+            
         @staticmethod
         def get_by_id(id: int):
             try:
@@ -195,7 +207,10 @@ class user:
                 return favorite
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+            
+            
     class bd_comment:
+        
         @staticmethod
         def add_comment(user_id: int, product_id: int, text: str):
             try:
@@ -205,6 +220,7 @@ class user:
                 return True
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+            
         @staticmethod
         def delete_by_id(id: int):
             try:
@@ -214,6 +230,7 @@ class user:
                 return True
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+            
         @staticmethod
         def get_by_id(id: int):
             try:
@@ -223,15 +240,147 @@ class user:
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
 
+
 class admin(user):
+
     class bd_category:
-        pass
+        
+        @staticmethod
+        def add_category(name: str, text: str):
+            try:
+                category = Category(name, text)
+                db.session.add(category)
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def delete_by_id(id: int):
+            try:
+                category = Category.query\
+                    .filter(Category.id == id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def get_by_id(id: int):
+            try:
+                category = Category.query\
+                    .filter(Category.id == id).first()
+                return category
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def change_by_id(id: int, name: str = None, text: str = None):
+            try:
+                category = Category.query\
+                    .filter(Category.id == id).first()
+                if name: category.name = name
+                if text: category.description = text
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+            
     class bd_second_category:
-        pass
+        @staticmethod
+        def add_category(name: str, text: str, id: int):
+            try:
+                category = SecondCategory(name, text, id)
+                db.session.add(category)
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def delete_by_id(id: int):
+            try:
+                category = SecondCategory.query\
+                    .filter(SecondCategory.id == id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def get_by_id(id: int):
+            try:
+                category = SecondCategory.query\
+                    .filter(SecondCategory.id == id).first()
+                return category
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def change_by_id(id: int, name: str = None, text: str = None, category_id: int = None):
+            try:
+                category = SecondCategory.query\
+                    .filter(SecondCategory.id == id).first()
+                if name: category.name = name
+                if text: category.description = text
+                if category_id: category.category_id = category_id
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+            
     class bd_third_category:
-        pass
+        
+        @staticmethod
+        def add_category(name: str, text: str, id: int):
+            try:
+                category = ThirdCategory(name, text, id)
+                db.session.add(category)
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def delete_by_id(id: int):
+            try:
+                category = ThirdCategory.query\
+                    .filter(ThirdCategory.id == id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def get_by_id(id: int):
+            try:
+                category = ThirdCategory.query\
+                    .filter(ThirdCategory.id == id).first()
+                return category
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def change_by_id(id: int, name: str = None, text: str = None, category_id: int = None):
+            try:
+                category = ThirdCategory.query\
+                    .filter(ThirdCategory.id == id).first()
+                if name: category.name = name
+                if text: category.description = text
+                if category_id: category.category_id = category_id
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+            
     class bd_product:
         pass
+    
+    
+    
 if __name__ == "__main__":
     
     with app.app_context():
