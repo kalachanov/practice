@@ -196,7 +196,32 @@ class user:
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
     class bd_comment:
-        pass
+        @staticmethod
+        def add_comment(user_id: int, product_id: int, text: str):
+            try:
+                comment = Comment(user_id, product_id, text)
+                db.session.add(comment)
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+        @staticmethod
+        def delete_by_id(id: int):
+            try:
+                comment = Comment.query\
+                    .filter(Comment.id == id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+        @staticmethod
+        def get_by_id(id: int):
+            try:
+                comment = Comment.query\
+                    .filter(Comment.id == id).first()
+                return comment
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
 
 class admin(user):
     class bd_category:
