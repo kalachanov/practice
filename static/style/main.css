@@ -10,6 +10,10 @@ main{
     justify-content: space-around;
     margin: 20px;
 }
-.block[calss^="block"]{
-    box-shadow: 1px 1px 0 0 #000000;
+div[class^="block"]{
+    width: 100px;
+    box-shadow: 0 0 10px 1px #000000;
+    border: solid 1px black;
+    border-radius: 15%;
+    padding: 10px;
 }
