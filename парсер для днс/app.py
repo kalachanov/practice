@@ -1,8 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://browser-info.ru/'
-get = requests.get(url).text
+header = {'user-agent': '1hfhfhfhf7373'}
+
+url = 'https://www.dns-shop.ru'
+get = requests.get(url, headers=header).text
 soup = BeautifulSoup(get, 'lxml')
-block = soup.find('div', id='javascript_check')
-print(block)
+# block = soup.find('div', id='product-card-characteristics')
+print(get)
