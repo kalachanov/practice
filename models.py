@@ -15,8 +15,8 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)  # Для хэшированных паролей
     first_name = db.Column(db.String(20))
     second_name = db.Column(db.String(20))
-    admin = db.Column(db.Integer(1))
-    mute = db.Column(db.Integer(1))
+    admin = db.Column(db.Boolean())
+    mute = db.Column(db.Boolean())
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     # Отношения
@@ -108,6 +108,8 @@ class Product(db.Model):
     third_category_id = db.Column(db.Integer, db.ForeignKey('third_categories.id', ondelete='SET NULL'))
     name = db.Column(db.String(80), nullable=False, index=True)
     description = db.Column(db.Text)
+    price = db.Column(db.Float, nullable=False)
+    discount = db.Column(db.Float, nullable=False)
     characteristics = db.Column(db.Text)  # JSON или обычный текст
     photo = db.Column(db.Text)  # URL или путь к файлу
     quantity = db.Column(db.Integer, default=0)

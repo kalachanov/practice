@@ -135,6 +135,15 @@ class user:
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
+        def get_by_user_id(id: int):
+            try:
+                cart = CartProduct.query\
+                    .filter(CartProduct.user_id == id).all()
+                return cart
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
         def quantity_plus_by_id(id: int):
             try:
                 cart = CartProduct.query\
@@ -208,6 +217,15 @@ class user:
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
             
+        @staticmethod
+        def get_by_user_id(id: int):
+            try:
+                favorite = FavoriteProduct.query\
+                    .filter(FavoriteProduct.user_id == id).all()
+                return favorite
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
             
     class bd_comment:
         
@@ -239,6 +257,25 @@ class user:
                 return comment
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
+        
+        @staticmethod
+        def get_by_product_id(id: int):
+            try:
+                comment = Comment.query\
+                    .filter(Comment.product_id == id).all()
+                return comment
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def get_by_user_id(id: int):
+            try:
+                comment = Comment.query\
+                    .filter(Comment.user_id == id).all()
+                return comment
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+
 
 
 class admin(user):
@@ -270,6 +307,14 @@ class admin(user):
             try:
                 category = Category.query\
                     .filter(Category.id == id).first()
+                return category
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def get_all():
+            try:
+                category = Category.query.all()
                 return category
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
@@ -313,6 +358,14 @@ class admin(user):
             try:
                 category = SecondCategory.query\
                     .filter(SecondCategory.id == id).first()
+                return category
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        def get_by_category_id(id: int):
+            try:
+                category = SecondCategory.query\
+                    .filter(SecondCategory.category_id == id).all()
                 return category
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
@@ -363,6 +416,15 @@ class admin(user):
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
+        def get_by_second_category_id(id: int):
+            try:
+                category = ThirdCategory.query\
+                    .filter(ThirdCategory.second_category_id == id).all()
+                return category
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
         def change_by_id(id: int, name: str = None, text: str = None, category_id: int = None):
             try:
                 category = ThirdCategory.query\
@@ -387,4 +449,4 @@ if __name__ == "__main__":
     
     with app.app_context():
         pass
-        print(admin.bd_cart_product.quantity_change(1, 0))
+        print(admin.bd_category.get_all())
