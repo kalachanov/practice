@@ -1,0 +1,21 @@
+h1{
+    font-size: 40px;
+}
+
+main{
+    width: 100%;
+}
+
+.carts{
+    display: flex;
+}
+
+.cart1{
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    box-shadow: 0 0 10px 1px #000000;
+    border-radius: 7%;
+    margin: 1%;
+    padding: 1%;
+}
