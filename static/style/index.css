@@ -59,7 +59,7 @@ header a{
     margin: 5px;
     border: none;
     background-color: white;
-    background-image: url(images/lupa.png);
+    background-image: url(../images/lupa.png);
     background-size: 25px;
     height: 28px;
 }

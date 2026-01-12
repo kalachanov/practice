@@ -1,0 +1,63 @@
+h1{
+    font-size: 40px;
+}
+
+main{
+    width: 60%;
+}
+
+.favorite{
+    margin: 10px 20px 10px 20px;
+}
+
+.products{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+        width: 100%;
+        height: 650px;
+        box-shadow: 0 0 10px 1px #000000;
+        border-radius: 2%;
+        margin: 1%;
+        padding: 1%;
+    
+}
+
+.product{
+    width: 450px;
+    height: 400px;
+    background-image: url(../images/bananaSEMAX.png);
+    background-size: cover;
+}
+
+P{
+    font-size: 25px;
+    margin: 2%;
+}
+
+button{
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: grey;
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+button:hover{
+    background-color: red;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+button:active{
+    transform: translateY(5px);
+}
+
+button:focus{
+    outline-offset: 5px;
+}
