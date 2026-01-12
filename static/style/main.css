@@ -12,16 +12,31 @@ main{
 }
 div[class^="block"]{
     width: 100px;
-    box-shadow: 0 0 10px 1px #000000;
-    border: solid 1px black;
-    border-radius: 7%;
+    box-shadow: 0 0 10px 0px #000000;
+    border-radius: 15px;
     padding: 10px;
-}
-
-.block1{
     height: 170px;
 }
-
+.block1{
+    background-image: url(../images/green.png);
+    background-size: contain;
+}
+.block2{
+    background-image: url(../images/blue.png);
+    background-size: contain;
+}
+.block3{
+    background-image: url(../images/pink.png);
+    background-size: contain;
+}
+.block4{
+    background-image: url(../images/orang.png);
+    background-size: contain;
+}
+.block5{
+    background-image: url(../images/yellow.png);
+    background-size: contain;
+}
 footer{
     position: relative;
 }
@@ -44,13 +59,13 @@ section{
     display: flex;
 }
 
-.cart1{
+div[class^="product"]{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 300px;
     height: 400px;
-    box-shadow: 0 0 10px 1px #000000;
+    box-shadow: 0 0 5px 0px #000000;
     border-radius: 7%;
     margin: 10px;
     padding: 10px;
@@ -68,16 +83,31 @@ section{
 
 .like, .price, .carting{
     width: 50px;
-    height: 30px;
-    box-shadow: 0 0 10px 1px #000000;
+    height: 50px;
     border-radius: 10px;
-    border: none;
+    border: solid 1px black;
 }
 .price{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 75px;
+    background-color: black;
+    color: white;
+}
+.like{
+    background-image: url(../images/like.png);
+    background-size: 25px;
+    background-position: 12.5px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.carting{
+    background-image: url(../images/carting.png);
+    background-size: 25px;
+    background-position: 12.5px;
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
 h1{
     font-size: 32px;
