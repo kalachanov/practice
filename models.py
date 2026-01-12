@@ -103,7 +103,7 @@ class ThirdCategory(db.Model):
 
 class Product(db.Model):
     __tablename__ = 'products'
-    
+    # цену и скидку
     id = db.Column(db.Integer, primary_key=True)
     third_category_id = db.Column(db.Integer, db.ForeignKey('third_categories.id', ondelete='SET NULL'))
     name = db.Column(db.String(80), nullable=False, index=True)
