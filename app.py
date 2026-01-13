@@ -1,8 +1,7 @@
 from flask import Flask
 from flask import render_template
+from func_bd import app, user, admin
 
-
-app = Flask(__name__)
 
 @app.route('/')
 def index():
