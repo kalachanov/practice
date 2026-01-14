@@ -1,5 +1,5 @@
 h1{
-    font-size: 40px;
+    font-size: 24px;
 }
 
 main{
@@ -9,7 +9,6 @@ main{
 .Сatalog{
     display: flex;
     flex-direction: column;
-    margin: 10px 20px 10px 20px;
 }
 
 .carts{
@@ -22,7 +21,7 @@ main{
     justify-content: center;
     align-items: center;
     width: 300px;
-    height: 350px;
+    height: 250px;
     box-shadow: 0 0 10px 1px #000000;
     border-radius: 10px;
     margin: 10px;
@@ -67,14 +66,12 @@ main{
 }
 
 .text{
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 16px;
 }
 
 .category{
     display: flex;
     flex-direction: column;
-    margin: 10px 20px 10px 20px;
 }
 
 .popular{
@@ -86,20 +83,14 @@ main{
     flex-direction: column;
     width: 400px;
     box-shadow: 0 0 10px 1px #000000;
-    border-radius: 2%;
-    margin: 1%;
-    padding: 1%;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
 }
-
-p{
-    font-weight: bold;
-}
-
 .popular__inf{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 5%;
 }
 
 .popular__icon1{
@@ -137,8 +128,6 @@ p{
 .news{
     display: flex;
     flex-direction: column;
-    margin: 10px 20px 10px 20px;
-
 }
 
 footer{
