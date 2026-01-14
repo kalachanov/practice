@@ -1,7 +1,6 @@
 h1{
-    font-size: 40px;
+    font-size: 24px;
 }
-
 main{
     width: 60%;
 }
@@ -16,7 +15,9 @@ main{
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
-    
+}
+.products p{
+    margin: 10px 0 10px 0;
 }
 .bananaSEMAX{
     width: 250px;
