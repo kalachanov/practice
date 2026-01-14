@@ -1,9 +1,18 @@
+@font-face {
+    font-family: 'Unbutu regular';
+    src: url(../fonts/Ubuntu-Regular.ttf);
+}
+@font-face {
+    font-family: 'Unbutu bold';
+    src: url(../fonts/Ubuntu-Bold.ttf);
+}
 *{
     text-decoration: none;
     margin: 0;
     padding: 0;
     font-size: 16px;
     transition: all .2s linear;
+    font-family: Unbutu regular;
 }
 body{
     display: flex;
@@ -66,6 +75,9 @@ header a{
 }
 .a-favourites, .a-cart, .a-profil{
     margin: 10px;
+}
+.a-favourites p, .a-cart p, .a-profil p{
+    font-family: Unbutu bold;
 }
 .lupa, .favourites, .cart, .profil{
     width: 25px;
