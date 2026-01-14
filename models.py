@@ -3,7 +3,8 @@ from datetime import datetime
 
 
 db = SQLAlchemy()
-
+# ! Сделать миграцию, пересмотреть использование второй и третьей категории
+# ! Пересмотреть сам код на нахождении неполадок
 
 class User(db.Model):
     __tablename__ = 'users'

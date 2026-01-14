@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template
 from func_bd import app, user, admin
 
-
+# ! Основной код проекта
 @app.route('/')
 def index():
     return render_template('index.html')

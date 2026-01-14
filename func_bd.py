@@ -372,7 +372,9 @@ class admin(user):
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
             
-            
+    # ! Возможно вырезать вторичную и третью категории.
+    # ! Переписать код основной категории с возможностью ссылаться на 
+    # ! самого себя.
     class bd_second_category:
         @staticmethod
         def add_category(name: str, text: str, id: int):
@@ -429,7 +431,9 @@ class admin(user):
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
             
-            
+    # ! Возможно вырезать вторичную и третью категории.
+    # ! Переписать код основной категории с возможностью ссылаться на 
+    # ! самого себя.        
     class bd_third_category:
         
         @staticmethod
@@ -495,7 +499,7 @@ class admin(user):
         pass
     
     
-    
+# ! вырезать данный контекст после финальных добавленией
 if __name__ == "__main__":
     
     with app.app_context():
