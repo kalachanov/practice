@@ -8,3 +8,6 @@ get = requests.get(url, headers=header).text
 soup = BeautifulSoup(get, 'lxml')
 # block = soup.find('div', id='product-card-characteristics')
 print(get)
+
+# ! Подпроект - парсер днс для добавочной информации в сам сайт и 
+# ! набиванием его базой данных.

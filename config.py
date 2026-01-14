@@ -3,3 +3,4 @@ class CONFIG:
     SQLALCHEMY_DATABASE_URI = f'sqlite:///{db}'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'your-secret-key-here'
+# ! Код конфига, изменить и убрать отсюда и вырезать из гита
