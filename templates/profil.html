@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шаблон</title>
+    <link rel="stylesheet" href="../static/style/index.css">
+    <link rel="stylesheet" href="../static/style/profil.css">
+</head>
+<body>
+    <header>
+        <div>
+            <a class="a-logo" href="main.html" name="main-logo"><img class="main-logo" src="../static/images/logo.png" alt=""><p>TECH GROUP</p></a>
+            <a class="catalog" href="catalog.html" name="catalog">Каталог</a>
+            <label id="label-search" for="search" name="label-search">
+                <input type="text" name="input-search" id="search" placeholder="Поиск по сайту" required>
+                <input type="button" class="lupa">
+            </label>
+        </div>
+        <div>
+            <a class="a-favourites" href="favourites.html" name="favourites"><img class="favourites" src="../static/images/favourites.png" alt="Избранное"><p>Избранное</p></a>
+            <a class="a-cart" href="cart.html" name="cart"><img class="cart" src="../static/images/cart.png" alt="Корзина"><p>Корзина</p></a>
+            <a class="a-profil" href="profil.html" name="profil"><img class="profil" src="../static/images/profil.png" alt="Профиль"><p>Профиль</p></a>
+        </div>
+    </header>
+    <main>
+        <section class="top">
+            <div class="profil">
+                <img src="../static/images/logoprofil.png" alt="">
+                <div>
+                    <h1>Ник</h1>
+                    <p>Дата регистрации</p>
+                </div>
+            </div>
+            <div class="data">
+                <label for="name">
+                    <input type="text" name="name" id="name" placeholder="Имя">
+                </label>
+                <label for="nickname">
+                    <input type="text" name="nickname" id="nickname" placeholder="Ник">
+                </label>
+                <label for="tel">
+                    <input type="tel" name="tel" id="tel" placeholder="Телефон">
+                </label>
+                <label for="email">
+                    <input type="email" name="email" id="email" placeholder="Электронная почта">
+                </label>
+            </div>
+            <div class="button">
+                <input type="button" value="Выйти">
+                <input type="button" value="Сохранить">
+                <input type="button" value="Удалить профиль">
+            </div>
+        </section>
+        <section class="bot">
+            <h1>Спопсобы оплаты</h1>
+            <label for="sber">
+                <img src="../static/images/sber.png" alt="">
+                <input type="button" value="Сбер">
+            </label>
+            <label for="t">
+                <img src="../static/images/t.png" alt="">
+                <input type="button" value="Т-банк">
+            </label>
+            <label for="yandex">
+                <img src="../static/images/yandex.jpg" alt="">
+                <input type="button" value="Яндекс">
+            </label>
+        </section>
+    </main>
+    <footer>
+        <section>
+            <div>
+                <p>Номер для связи</p>
+                <p>+7 (800) 555 35-35</p>
+            </div>
+            <div>
+                <img class="telegram" name="telegram" src="../static/images/telegram.png" alt="">
+                <img class="youtube" name="youtube" src="../static/images/youtube.png" alt="">
+                <img class="vk" name="vk" src="../static/images/vk.png" alt="">
+            </div>
+            <div>
+                <p>&copy; TECH GROUP</p>
+            </div>
+        </section>
+        <img class="qr-code" name="qr-code" src="../static/images/qr-code.gif" alt="">
+    </footer>
+</body>
+</html>

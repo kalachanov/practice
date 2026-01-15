@@ -1,0 +1,11 @@
+main{
+    width: 65%;
+}
+img{
+    width: 50px;
+}
+.top{
+    box-shadow: 0 0 5px 0px gray;
+    border-radius: 20px;
+    
+}
