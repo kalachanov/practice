@@ -496,7 +496,71 @@ class admin(user):
     class bd_product:
         # ! сделать и протестировать с использованием сторонних файлов.
         # ! ЖЕЛАТЕЛЬНО написать парсер для днс
-        pass
+        @staticmethod
+        def add_product(third_category_id: int, name: str, description: str, price: int, 
+                 characteristics: str = None, photo: str = None, 
+                 discount: int = 0, quantity: str = None):
+            """Добавление нового товара"""
+            try:
+                product = Product(name, third_category_id, description, characteristics, 
+                               photo, quantity, price, discount)
+                db.session.add(product)
+                db.session.commit()
+                return product
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def get_by_id(id: int):
+            """Получение продукта по айди"""
+            try:
+                product = Product.query\
+                    .filter(Product.id == id).first()
+                return product
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def get_all_by_third_category_id(id: int):
+            """Получение продукта по айди третьей категории"""
+            try:
+                product = Product.query\
+                    .filter(Product.third_category_id == id).all()
+                return product
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def delete_by_id(id: int):
+            """Удаление продукта по айди"""
+            try:
+                product = Product.query\
+                    .filter(Product.id == id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}' 
+            
+        @staticmethod
+        def change_product(id: int, name: str, description: str, price: int, 
+                 characteristics: str = None, photo: str = None, 
+                 discount: int = 0, quantity: str = None):
+            """Изменение параметров продукта по айди"""
+            try:
+                product = Product.query\
+                    .filter(Product.id== id).first()
+                if name: Product.name = name
+                if description: Product.description = description
+                if price: Product.price = price
+                if characteristics: Product.characteristics = characteristics
+                if photo: Product.photo = photo
+                if discount: Product.discount = discount
+                if quantity: Product.quantity = quantity
+                db.session.commit()
+                return product
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'  
+            
     
     
 # ! вырезать данный контекст после финальных добавленией
@@ -504,4 +568,4 @@ if __name__ == "__main__":
     
     with app.app_context():
         pass
-        print(admin.bd_category.get_all())
+        print(admin.bd_product.add_product(1, 'name','desc',1,))

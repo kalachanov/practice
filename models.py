@@ -111,8 +111,8 @@ class Product(db.Model):
     description = db.Column(db.Text)
     price = db.Column(db.Float, nullable=False)
     discount = db.Column(db.Float, nullable=False)
-    characteristics = db.Column(db.Text)  # JSON или обычный текст
-    photo = db.Column(db.Text)  # URL или путь к файлу
+    characteristics = db.Column(db.Text)  # путь к json или к тхт
+    photo = db.Column(db.Text)  # путь к папке
     quantity = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, default=datetime.utcnow, index=True)
     
@@ -125,13 +125,16 @@ class Product(db.Model):
                               cascade='all, delete-orphan')
     
     def __init__(self, name: str, third_category_id: int, description: str = None, 
-                 characteristics: str = None, photo: str = None, quantity: int = 0):
+                 characteristics: str = None, photo: str = None, quantity: int = 0, 
+                 price: int = 0, discount: int = 0):
         self.name = name
         self.third_category_id = third_category_id
         self.description = description
         self.characteristics = characteristics
         self.photo = photo
         self.quantity = quantity
+        self.price = price
+        self.discount = discount
         
     def __repr__(self):
         return f'<Product {self.name}>'
