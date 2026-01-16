@@ -28,13 +28,15 @@ main{
     padding: 10px;
 }
 
-img{
+.cart1 img{
     width: 200px;
+    position: absolute;
 }
 
-.text{
+.cart1 .text{
     font-size: 16px;
     font-family: Unbutu bold;
+    margin-top: 80%;
 }
 
 .category{
@@ -46,7 +48,7 @@ img{
     display: flex;
 }
 
-.popular__product{
+.popular__product {
     display: flex;
     flex-direction: column;
     width: 400px;
@@ -54,6 +56,12 @@ img{
     border-radius: 10px;
     margin: 10px;
     padding: 10px;
+}
+
+.popular__product img {
+    width: 150px;
+    max-height: 150px;
+
 }
 .popular__inf{
     display: flex;
@@ -64,8 +72,4 @@ img{
 .news{
     display: flex;
     flex-direction: column;
-}
-
-footer{
-    position: relative;
 }
