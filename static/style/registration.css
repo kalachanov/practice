@@ -30,7 +30,7 @@ form{
 form label{
     margin: 5px;
 }
-input[type="button"]{
+main input[type="button"]{
     margin: 10px;
     border: none;
     background-color: lightgray;
