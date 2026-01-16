@@ -25,7 +25,7 @@
     </header>
     <main>
         <section class="top">
-            <div class="profil">
+            <div class="foto">
                 <img src="../static/images/logoprofil.png" alt="">
                 <div>
                     <h1>Ник</h1>
@@ -47,25 +47,29 @@
                 </label>
             </div>
             <div class="button">
-                <input type="button" value="Выйти">
-                <input type="button" value="Сохранить">
-                <input type="button" value="Удалить профиль">
+                <div>
+                    <input id="exit" type="button" value="Выйти">
+                    <input id="save" type="button" value="Сохранить">
+                </div>
+                <input id="delete" type="button" value="Удалить профиль">
             </div>
         </section>
         <section class="bot">
             <h1>Спопсобы оплаты</h1>
-            <label for="sber">
-                <img src="../static/images/sber.png" alt="">
-                <input type="button" value="Сбер">
-            </label>
-            <label for="t">
-                <img src="../static/images/t.png" alt="">
-                <input type="button" value="Т-банк">
-            </label>
-            <label for="yandex">
-                <img src="../static/images/yandex.jpg" alt="">
-                <input type="button" value="Яндекс">
-            </label>
+            <div>
+                <label for="sber">
+                    <img src="../static/images/sber.png" alt="">
+                    <input id="sber" type="button" value="Сбер">
+                </label>
+                <label for="t">
+                    <img src="../static/images/t.png" alt="">
+                    <input id="t" type="button" value="Т-банк">
+                </label>
+                <label for="yandex">
+                    <img src="../static/images/yandex.jpg" alt="">
+                    <input id="yandex" type="button" value="Яндекс">
+                </label>
+            </div>
         </section>
     </main>
     <footer>
