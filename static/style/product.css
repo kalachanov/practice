@@ -1,0 +1,153 @@
+h1{
+    font-size: 40px;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+   
+}
+
+.information{
+    display: flex;
+    margin: 15px;
+}
+
+.icon{
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+    margin: 15px;
+    padding: 150px;
+}
+
+.inf{
+    display: flex;
+    flex-direction: column;
+}
+
+.inf__spec{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+    margin: 15px;
+    padding: 50px;
+}
+
+.inf__icon{
+    display: flex;
+}
+
+.icon1{
+    width: 50px;
+}
+
+.star{
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 10px;
+
+}
+
+.many{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+    margin: 15px;
+    padding: 50px;
+}
+
+.rub{
+    background-color: rgba(116, 116, 116, 0.3);
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.inf__spec p{
+    color: black;
+    font-weight: bolder;
+}
+
+.click{
+    display: flex;
+    
+}
+
+.buy{
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    
+}
+
+.like{
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.image{
+    width: 25px;
+}
+
+.text{
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+    padding: 8px;
+    
+
+}
+
+
+.specification{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px;
+}
+
+.spec{
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+    height: 100px;
+
+}
+
+.reviews{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px;
+
+}
+
+.pole{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.reviews__text{
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+    padding: 15px;
+
+}
+
+textarea{
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 8px;
+
+}
