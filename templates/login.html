@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шаблон</title>
+    <link rel="stylesheet" href="../static/style/index.css">
+    <link rel="stylesheet" href="../static/style/login.css">
+</head>
+<body>
+    <header>
+        <div>
+            <a class="a-logo" href="{{ url_for('main')}}" name="main-logo"><img class="main-logo" src="../static/images/logo.png" alt=""><p>TECH GROUP</p></a>
+            <a class="catalog" href="{{ url_for('catalog')}}" name="catalog">Каталог</a>
+            <label id="label-search" for="search" name="label-search">
+                <input type="text" name="input-search" id="search" placeholder="Поиск по сайту" required>
+                <input type="button" class="lupa">
+            </label>
+        </div>
+        <div>
+            <a class="a-favourites" href="{{ url_for('favorite')}}" name="favourites"><img class="favourites" src="../static/images/favourites.png" alt="Избранное"><p>Избранное</p></a>
+            <a class="a-cart" href="{{ url_for('cart')}}" name="cart"><img class="cart" src="../static/images/cart.png" alt="Корзина"><p>Корзина</p></a>
+            <a class="a-profil" href="{{ url_for('profile')}}" name="profil"><img class="profil" src="../static/images/profil.png" alt="Профиль"><p>Профиль</p></a>
+        </div>
+    </header>
+    <main>
+        <div class="login">
+            <a class="a-login" href="{{ url_for('login')}}">Вход</a>
+            <a class="a-registration" href="{{ url_for('registration')}}">Регистрация</a>
+        </div>
+        <form action="" method="post">
+            <label for="name">Имя пользователя</label>
+            <input id="name" type="text" required>
+            <label for="password">Пароль</label>
+            <input id="password" type="password" required>
+            <input type="button" value="Войти">
+        </form>
+        <a href="main.html">
+            <div class="back">
+                Вернуться на главную
+            </div>
+        </a>
+    </main>
+    <footer>
+        <section>
+            <div>
+                <p>Номер для связи</p>
+                <p>+7 (800) 555 35-35</p>
+            </div>
+            <div>
+                <img class="telegram" name="telegram" src="../static/images/telegram.png" alt="">
+                <img class="youtube" name="youtube" src="../static/images/youtube.png" alt="">
+                <img class="vk" name="vk" src="../static/images/vk.png" alt="">
+            </div>
+            <div>
+                <p>&copy; TECH GROUP</p>
+            </div>
+        </section>
+        <img class="qr-code" name="qr-code" src="../static/images/qr-code.gif" alt="">
+    </footer>
+</body>
+</html>

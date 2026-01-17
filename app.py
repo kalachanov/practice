@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import render_template
+from flask import render_template, session, redirect, url_for
 from func_bd import app, user, admin
 
 # ! Основной код проекта
@@ -18,6 +17,8 @@ def registration():
 
 @app.route('/profil')
 def profile():
+    if 'user_id' not in session:
+        return redirect(url_for('registration'))
     return render_template('profil.html')
 
 @app.route('/catalog')
@@ -26,7 +27,11 @@ def catalog():
 
 @app.route('/favourites')
 def favorite():
-    return render_template('favorite.html')
+    return render_template('favourites.html')
+
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
