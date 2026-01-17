@@ -3,13 +3,10 @@ from flask import render_template
 from func_bd import app, user, admin
 
 # ! Основной код проекта
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/main.html')
+@app.route('/', methods = ["POST", "GET"])
 def main():
-    return render_template('main.html')
+    products = admin.bd_product.get_all_by_third_category_id(1)
+    return render_template('main_flask.html', products = products)
 
 @app.route('/catalog.html')
 def catalog():

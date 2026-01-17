@@ -568,4 +568,4 @@ if __name__ == "__main__":
     
     with app.app_context():
         pass
-        print(admin.bd_product.add_product(1, 'name','desc',1,))
+        print(admin.bd_product.add_product(1, 'КСАС МОДЕЛ 000 СТО УЛЬТРА ','desc',9999,))
