@@ -59,11 +59,28 @@ def logout():
         
     return redirect(url_for('main'))
 
-@app.route('/profile')
+@app.route('/profile', methods = ["POST", "GET"])
 def profile():
     if 'user_id' not in session:
         return redirect(url_for('login'))
-    return render_template('profil.html')
+    else:
+        if request.method == 'POST':
+            action = request.form.get('action')
+            if action == 'change':
+                first_name = request.form.get('first_name')
+                username = request.form.get('username')
+                phone = request.form.get('phone')
+                email = request.form.get('email')
+                user.bd_user.change_by_id(id = session['user_id'], username=username, first_name=first_name,
+                                          phone=phone, email=email)
+            if action == 'delete':
+                user.bd_user.delete_by_id(session['user_id'])
+                return redirect(url_for('logout'))
+            if action == 'logout':
+                return redirect(url_for('logout'))
+            
+        get_user = user.bd_user.get_by_id(session['user_id'])
+    return render_template('profil.html', get_user=get_user)
 
 @app.route('/favourites')
 def favorite():

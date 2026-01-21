@@ -1,58 +1,58 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Шаблон</title>
-    <link rel="stylesheet" href="../static/style/index.css">
+{% extends 'index.html' %}
+
+{% block title %}
+Главная 
+{% endblock %}
+
+{% block link_css %} 
+    <link rel="stylesheet" href="../static/style/main.css">
     <link rel="stylesheet" href="../static/style/profil.css">
-</head>
-<body>
-    <header>
-        <div>
-            <a class="a-logo" href="main.html" name="main-logo"><img class="main-logo" src="../static/images/logo.png" alt=""><p>TECH GROUP</p></a>
-            <a class="catalog" href="catalog.html" name="catalog">Каталог</a>
-            <label id="label-search" for="search" name="label-search">
-                <input type="text" name="input-search" id="search" placeholder="Поиск по сайту" required>
-                <input type="button" class="lupa">
-            </label>
-        </div>
-        <div>
-            <a class="a-favourites" href="favourites.html" name="favourites"><img class="favourites" src="../static/images/favourites.png" alt="Избранное"><p>Избранное</p></a>
-            <a class="a-cart" href="cart.html" name="cart"><img class="cart" src="../static/images/cart.png" alt="Корзина"><p>Корзина</p></a>
-            <a class="a-profil" href="profil.html" name="profil"><img class="profil" src="../static/images/profil.png" alt="Профиль"><p>Профиль</p></a>
-        </div>
-    </header>
+{% endblock %}
+
+
+{% block main %}
     <main>
         <section class="top">
             <div class="foto">
                 <img src="../static/images/logoprofil.png" alt="">
                 <div>
-                    <h1>Ник</h1>
-                    <p>Дата регистрации</p>
+                    <h1>{{get_user.username}}</h1>
+                    <p>{{get_user.created_at}}</p>
                 </div>
             </div>
+            <form action="" method="POST">
             <div class="data">
+                <input type="hidden", name="action", value="change">
                 <label for="name">
-                    <input type="text" name="name" id="name" placeholder="Имя">
+                    <input type="text" id="name" placeholder="Имя", value="{{get_user.first_name}}", name="first_name">
                 </label>
                 <label for="nickname">
-                    <input type="text" name="nickname" id="nickname" placeholder="Ник">
+                    <input type="text" id="nickname" placeholder="Ник", value="{{get_user.username}}", name="username">
                 </label>
                 <label for="tel">
-                    <input type="tel" name="tel" id="tel" placeholder="Телефон">
+                    <input type="tel" id="tel" placeholder="Телефон", value="{{get_user.phone}}", name="phone">
                 </label>
                 <label for="email">
-                    <input type="email" name="email" id="email" placeholder="Электронная почта">
+                    <input type="email" id="email" placeholder="Электронная почта", value="{{get_user.email}}", name="email">
                 </label>
+                
             </div>
             <div class="button">
                 <div>
-                    <input id="exit" type="button" value="Выйти">
-                    <input id="save" type="button" value="Сохранить">
+                    
+                    <input id="save", action="change" type="submit" value="Сохранить">
+                    </form>
+                    <input type="hidden", name="action", value="logout">
+                    <form action="logout" method="POST">
+                    <input id="exit", action="logout" type="submit" value="Выйти">
+                    </form>
                 </div>
-                <input id="delete" type="button" value="Удалить профиль">
+                <form action="" method="POST">
+                <input type="hidden", name="action", value="delete">
+                <input id="delete" type="submit" value="Удалить профиль">
+                </form>
             </div>
+            
         </section>
         <section class="bot">
             <h1>Спопсобы оплаты</h1>
@@ -72,22 +72,4 @@
             </div>
         </section>
     </main>
-    <footer>
-        <section>
-            <div>
-                <p>Номер для связи</p>
-                <p>+7 (800) 555 35-35</p>
-            </div>
-            <div>
-                <img class="telegram" name="telegram" src="../static/images/telegram.png" alt="">
-                <img class="youtube" name="youtube" src="../static/images/youtube.png" alt="">
-                <img class="vk" name="vk" src="../static/images/vk.png" alt="">
-            </div>
-            <div>
-                <p>&copy; TECH GROUP</p>
-            </div>
-        </section>
-        <img class="qr-code" name="qr-code" src="../static/images/qr-code.gif" alt="">
-    </footer>
-</body>
-</html>
+{% endblock %}
