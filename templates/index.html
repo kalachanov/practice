@@ -11,17 +11,17 @@
 <body>
     <header>
         <div>
-            <a class="a-logo" href="main.html" name="main-logo"><img class="main-logo" src="../static/images/logo.png" alt=""><p>TECH GROUP</p></a>
-            <a class="catalog" href="catalog.html" name="catalog">Каталог</a>
+            <a class="a-logo" href="{{url_for('main')}}" name="main-logo"><img class="main-logo" src="../static/images/logo.png" alt=""><p>TECH GROUP</p></a>
+            <a class="catalog" href="{{url_for('catalog')}}" name="catalog">Каталог</a>
             <label id="label-search" for="search" name="label-search">
                 <input type="text" name="input-search" id="search" placeholder="Поиск по сайту" required>
                 <input type="button" class="lupa">
             </label>
         </div>
         <div>
-            <a class="a-favourites" href="favourites.html" name="favourites"><img class="favourites" src="../static/images/favourites.png" alt="Избранное"><p>Избранное</p></a>
-            <a class="a-cart" href="cart.html" name="cart"><img class="cart" src="../static/images/cart.png" alt="Корзина"><p>Корзина</p></a>
-            <a class="a-profil" href="profil.html" name="profil"><img class="profil" src="../static/images/profil.png" alt="Профиль"><p>Профиль</p></a>
+            <a class="a-favourites" href="{{url_for('favorite')}}" name="favourites"><img class="favourites" src="../static/images/favourites.png" alt="Избранное"><p>Избранное</p></a>
+            <a class="a-cart" href="{{url_for('cart')}}" name="cart"><img class="cart" src="../static/images/cart.png" alt="Корзина"><p>Корзина</p></a>
+            <a class="a-profil" href="{{url_for('profile')}}" name="profil"><img class="profil" src="../static/images/profil.png" alt="Профиль"><p>Профиль</p></a>
         </div>
     </header>
     {% block main %} {% endblock %}

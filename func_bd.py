@@ -345,7 +345,7 @@ class admin(user):
             """Получение категории по айди"""
             try:
                 category = Category.query\
-                    .filter(Category.id == id).first()
+                    .filter(Category.id == id).all()
                 return category
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
