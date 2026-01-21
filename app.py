@@ -1,4 +1,4 @@
-from flask import render_template, session, redirect, url_for
+from flask import render_template, session, redirect, url_for, request
 from func_bd import app, user, admin
 
 # ! Основной код проекта
@@ -21,13 +21,43 @@ def catalog(catalog_id = None):
         return render_template('catalog.html', catalogs=catalogs, second_catalogs=second_catalogs)
         
 
-@app.route('/login')
+@app.route('/login', methods = ["POST", "GET"])
 def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        if user.bd_user.login(password=password, username=username):
+            human = user.bd_user.get_by_username(username=username)
+            session['user_id'] = human.id
+            return redirect(url_for('profile'))
+        else:
+            return redirect(url_for('main'))
+
     return render_template('login.html')
 
-@app.route('/register')
+@app.route('/register', methods = ["POST", "GET"])
 def registration():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        phone = request.form.get('phone')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        password_double = request.form.get('password_double')
+        if password == password_double:
+            if user.bd_user.registration(username=username, password=password, email=email, phone=phone):
+                human = user.bd_user.get_by_username(username=username)
+                session['user_id'] = human.id
+                return redirect(url_for('profile'))
+        
     return render_template('registration.html')
+
+@app.route('/logout', methods = ["POST", "GET"])
+def logout():
+    
+    session.clear()
+                
+        
+    return redirect(url_for('main'))
 
 @app.route('/profile')
 def profile():
