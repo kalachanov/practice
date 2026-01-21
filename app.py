@@ -5,7 +5,7 @@ from func_bd import app, user, admin
 @app.route('/', methods = ["POST", "GET"])
 def main():
     products = admin.bd_product.get_all_by_third_category_id(1)
-    return render_template('main_flask.html', products = products)
+    return render_template('main.html', products = products)
 
 @app.route('/login')
 def login():
