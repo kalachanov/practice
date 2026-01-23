@@ -15,12 +15,10 @@
         <section class="Сatalog">
             <h1>Каталог товаров</h1>
             <div class="carts">
-                {% for catalog in catalogs %}
-                <a href="{{url_for('catalog', catalog_id = catalog.id)}}"><div class="cart1">
-                   <img src="{{catalog.description}}" alt="{{catalog.name}}"> 
-                    <p class="text">{{catalog.name}}</p>
+                <a href=""><div class="cart1">
+                   <img src="{{catalogs.description}}" alt="{{catalogs.name}}"> 
+                    <p class="text">{{catalogs.name}}</p>
                 </div></a>
-                {% endfor %}
             </div>
         </section>
         <section class="category">
@@ -28,7 +26,7 @@
             <div class="popular">
                 {% for second_catalog in second_catalogs %}
                 <div class="popular__product">
-                    <a href="{{url_for('second_catalog', second_catalog_id = second_catalog.id)}}"><p class="text">{{ second_catalog.name }}</p></a>
+                    <a href="{{url_for('third_catalog', third_catalog_id = second_catalog.id)}}"><p class="text">{{ second_catalog.name }}</p></a>
                     <div class="popular__inf">
                         <img src="{{ second_catalog.description }}" alt="{{ second_catalog.name }}"> 
                     </div>

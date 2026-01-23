@@ -10,13 +10,15 @@ def main():
 @app.route('/product/<int:product_id>')
 def product(product_id = None):
     if product_id:
-        products = admin.bd_category.get_by_id(product_id)
-        return render_template('product.html', products=products)
+        products = admin.bd_product.get_by_id(product_id)
+        comments = admin.bd_comment.get_by_product_id(product_id)
+        len_comments = len(comments)
+        return render_template('product.html', products=products, len_comments=len_comments, comments=comments)
 
 
 @app.route('/catalog/')
 @app.route('/catalog/<int:catalog_id>')
-def catalog(catalog_id = None):
+def catalog(catalog_id = None ):
     if catalog_id:
         catalogs = admin.bd_category.get_by_id(catalog_id)
         second_catalogs = admin.bd_second_category.get_by_category_id(catalog_id)
@@ -27,6 +29,18 @@ def catalog(catalog_id = None):
         
         second_catalogs = admin.bd_second_category.get_by_category_id(1)
         return render_template('catalog.html', catalogs=catalogs, second_catalogs=second_catalogs)
+
+@app.route('/second_catalog/<int:second_catalog_id>')
+def second_catalog(second_catalog_id):
+    catalogs = admin.bd_second_category.get_by_id(second_catalog_id)
+    second_catalogs = admin.bd_third_category.get_by_second_category_id(second_catalog_id)
+    return render_template('catalog copy.html', catalogs=catalogs, second_catalogs=second_catalogs)
+
+@app.route('/third_catalog/<int:third_catalog_id>')
+def third_catalog(third_catalog_id):
+    catalogs = admin.bd_third_category.get_by_id(third_catalog_id)
+    products = admin.bd_product.get_all_by_third_category_id(third_catalog_id)
+    return render_template('sale.html', catalogs=catalogs, products=products)
         
 
 @app.route('/login', methods = ["POST", "GET"])

@@ -569,4 +569,4 @@ if __name__ == "__main__":
     
     with app.app_context():
         pass
-        print(admin.bd_product.add_product(1, 'КСАС МОДЕЛ 000 СТО УЛЬТРА ','desc',9999,))
+        print(admin.bd_comment.get_by_product_id(2))
