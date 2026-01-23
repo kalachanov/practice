@@ -38,7 +38,7 @@
             {% for product in products %}
             <div class="carts">
                 <div class="product1">
-                    <a href="">
+                    <a href="{{url_for('product', product_id = product.id)}}">
                         <div class="top">
                             <img src="{{product.photo}}" alt="картинка" class="foto">
                             <div class="text">{{ product.name }}</div>

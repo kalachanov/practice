@@ -7,6 +7,13 @@ def main():
     products = admin.bd_product.get_all_by_third_category_id(1)
     return render_template('main.html', products = products)
 
+@app.route('/product/<int:product_id>')
+def product(product_id = None):
+    if product_id:
+        products = admin.bd_category.get_by_id(product_id)
+        return render_template('product.html', products=products)
+
+
 @app.route('/catalog/')
 @app.route('/catalog/<int:catalog_id>')
 def catalog(catalog_id = None):
@@ -17,6 +24,7 @@ def catalog(catalog_id = None):
     else:
         catalogs = admin.bd_category.get_all()
         # category_id = 1 популярные продукты
+        
         second_catalogs = admin.bd_second_category.get_by_category_id(1)
         return render_template('catalog.html', catalogs=catalogs, second_catalogs=second_catalogs)
         
@@ -84,10 +92,21 @@ def profile():
 
 @app.route('/favourites')
 def favorite():
-    return render_template('favourites.html')
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    else:
+        if not user.bd_favorite_product.get_by_user_id(session['user_id']):
+            return render_template('favourites.html')
+        else:
+            favorite_product = user.bd_favorite_product.get_by_user_id(session['user_id'])
+            return render_template('favourites copy.html', favorite_product=favorite_product)
 
 @app.route('/cart')
 def cart():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    else:
+        pass
     return render_template('cart.html')
 
 if __name__ == '__main__':
