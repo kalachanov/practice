@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная 
+{% endblock %}
+
+{% block link_css %} 
+    <link rel="stylesheet" href="../static/style/main.css">
+    <link rel="stylesheet" href="../static/style/favourites.css">
+
+{% endblock %}
+
+
+{% block main %}
+    <main>
+        <h1>Акции</h1>
+        {% for product in products %}
+        <section class="product">
+            <div class="left">
+                <img src="{{product.desc}}" alt="" class="foto">
+                <div>
+                    <p><a href="{{url_for('product', product_id = product.id)}}">{{product.name}}</a></p>
+                    <p class="otzuvu">★4.75 | 500 отзывов</p>
+                </div>
+            </div>
+            <div class="right">
+                <p class="price">{{product.price}} &#8381;</p>
+                <div>
+                    <label for="like"><img src="../static/images/like.png" alt="" class="img_like"></label>
+                    <input type="button" class="like">
+                    <label for="carting"><img src="../static/images/carting.png" alt="" class="img_carting"></label>
+                    <input type="button" class="carting">
+                </div>
+            </div>
+        </section>
+        {% endfor %}
+        
+    </main>
+{% endblock %}

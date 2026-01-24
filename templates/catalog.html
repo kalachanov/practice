@@ -1,142 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/style/index.css">
-    <link rel="stylesheet" href="../static/style/catalog.css">
-</head>
-<body>
-    <header>
-        <div>
-            <a class="a-logo" href="main.html" name="main-logo"><img class="main-logo" src="../static/images/logo.png" alt=""><p>TECH GROUP</p></a>
-            <a class="catalog" href="catalog.html" name="catalog">Каталог</a>
-            <label id="label-search" for="search" name="label-search">
-                <input type="text" name="input-search" id="search" placeholder="Поиск по сайту" required>
-                <input type="button" class="lupa">
-            </label>
-        </div>
-        <div>
-            <a class="a-favourites" href="favourites.html" name="favourites"><img class="favourites" src="../static/images/favourites.png" alt="Избранное"><p>Избранное</p></a>
-            <a class="a-cart" href="cart.html" name="cart"><img class="cart" src="../static/images/cart.png" alt="Корзина"><p>Корзина</p></a>
-            <a class="a-profil" href="profil.html" name="profil"><img class="profil" src="../static/images/profil.png" alt="Профиль"><p>Профиль</p></a>
-        </div>
-    </header>
+{% extends 'index.html' %}
 
+{% block title %}
+Главная 
+{% endblock %}
+
+{% block link_css %} 
+    <link rel="stylesheet" href="../static/style/main.css">
+    <link rel="stylesheet" href="../static/style/catalog.css">
+{% endblock %}
+
+
+{% block main %}
     <main>
-        <div class="Сatalog">
+        <section class="Сatalog">
             <h1>Каталог товаров</h1>
             <div class="carts">
-                <div class="cart1">
-                <div class="icon1"></div>
-                <div class="text">Бытовая техника</div>
-            </div>
-                
-            <div class="cart1">
-                <div class="icon2"></div>
-                <div class="text">Комлектующие ПК</div>
-            </div>
-
-                <div class="cart1">
-                    <div class="icon3"></div>
-                <div class="text">ТВ</div>
-            </div>
-
-                <div class="cart1">
-                    <div class="icon4"></div>
-                <div class="text">ПК</div>
-            </div>
-
-                <div class="cart1">
-                    <div class="icon5"></div>
-                <div class="text">Ноутбуки</div>
-            </div>
-            </div>
-        </div>
-
-        <div class="category">
-            <h1>Популярные категории</h1>
-
-            <div class="popular">
-                <div class="popular__product">
-                <div class="text">Оперативная память</div>
-                <div class="popular__inf">
-                    <div>
-                    <p>DDR4</p>
-                    <p>DDR5</p></div>
-
-                    <div class="popular__icon1"></div>
-                </div>
-            </div>
-
-                <div class="popular__product">
-                    <div class="text"> Видеокарты</div>
-                <div class="popular__inf">
-                    <div><p>DDR4</p>
-                        <p>DDR5</p></div>
-                    <div class="popular__icon2"></div>
-                </div>
-                </div>
-
-                <div class="popular__product">
-                    <div class="text">Теливизоры</div>
-                <div class="popular__inf">
-                    <div><p>DDR4</p>
-                        <p>DDR5</p></div>
-                    <div class="popular__icon3"></div>
-                </div>
-                </div>
-
-                <div class="popular__product">
-                    <div class="text">Ноутбуки</div>
-                <div class="popular__inf">
-                    <div><p>DDR4</p>
-                    <p>DDR5</p></div>
-                    <div class="popular__icon4"></div>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="news">
-            <h1>Новости Tech group </h1>
-
-            <div class="popular">
-                <div class="popular__product">
-                <div class="text">Оперативная память</div>
-                <div class="popular__inf">
-                    <div>
-                    <p>DDR4</p>
-                    <p>DDR5</p></div>
-
-                    <div class="popular__icon1"></div>
-                </div>
-              </div>
-            </div>
-        </div>
-
-
-    </main>
-
-
-    <footer>
-        <section>
-            <div>
-                <p>Номер для связи</p>
-                <p>+7 (800) 555 35-35</p>
-            </div>
-            <div>
-                <img class="telegram" name="telegram" src="../static/images/telegram.png" alt="">
-                <img class="youtube" name="youtube" src="../static/images/youtube.png" alt="">
-                <img class="vk" name="vk" src="../static/images/vk.png" alt="">
-            </div>
-            <div>
-                <p>&copy; TECH GROUP</p>
+                {% for catalog in catalogs %}
+                <a href="{{url_for('catalog', catalog_id = catalog.id)}}"><div class="cart1">
+                   <img src="{{catalog.description}}" alt="{{catalog.name}}"> 
+                    <p class="text">{{catalog.name}}</p>
+                </div></a>
+                {% endfor %}
             </div>
         </section>
-        <img class="qr-code" name="qr-code" src="../static/images/qr-code.gif" alt="">
-    </footer>
+        <section class="category">
+            <h1>Популярные категории</h1>
+            <div class="popular">
+                {% for second_catalog in second_catalogs %}
+                <div class="popular__product">
+                    <a href="{{url_for('second_catalog', second_catalog_id = second_catalog.id)}}"><p class="text">{{ second_catalog.name }}</p></a>
+                    <div class="popular__inf">
+                        <img src="{{ second_catalog.description }}" alt="{{ second_catalog.name }}"> 
+                    </div>
+                </div>
+                {% endfor %}
+        </section>
+        <!-- <section class="news">
+            <h1>Новости Tech group </h1>
+            <div class="popular">
+                <div class="popular__product">
+                    <p class="text">Оперативная память</p>
+                    <div class="popular__inf">
+                        <div>
+                            <p>Оперативная память за миллион</p>
+                            <p>Разбираемся почему так дорого</p>
+                        </div>
+                        <img src="../static/images/images (1).png" alt="стиралка"> 
+                    </div>
+              </div>
+            </div>
+        </section> -->
+    </main>
+{% endblock %}
     
-</body>
-</html>

@@ -2,9 +2,11 @@ from config import CONFIG
 from models import *
 from flask import Flask
 
+# ! Переделать, убрать это, переместить в app.py
 app = Flask(__name__)    
 app.config['SQLALCHEMY_DATABASE_URI'] = CONFIG.SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = CONFIG.SQLALCHEMY_TRACK_MODIFICATIONS
+app.config['SECRET_KEY'] = 'SECRET'
 
 db.init_app(app)
 
@@ -14,6 +16,7 @@ class user:
         @staticmethod
         def registration(username: str, password: str, first_name: str = None, 
                  second_name: str = None, email: str = None, phone: str = None):
+            """Регистрация нового пользователя"""
             try:
                 user = User(username, password, first_name, 
                  second_name, email, phone)
@@ -25,6 +28,7 @@ class user:
             
         @staticmethod
         def login(password: str, username: str = None, email: str = None, phone: str = None):
+            """Авторизация пользователя, проверка вводимых параметров"""
             try:
                 if username and User.query\
                     .filter(User.username == username, User.password == password).first():
@@ -42,6 +46,7 @@ class user:
             
         @staticmethod
         def get_by_username(username: str):
+            """Получение пользователя по юзернейму"""
             try:
                 user = User.query\
                     .filter(User.username == username).first()
@@ -51,6 +56,7 @@ class user:
             
         @staticmethod
         def get_by_id(id: int):
+            """Получение пользователя по айди"""
             try:
                 user = User.query\
                     .filter(User.id == id).first()
@@ -60,6 +66,7 @@ class user:
             
         @staticmethod
         def delete_by_id(id: int):
+            """Удаление пользователя по айди"""
             try:
                 user = User.query\
                     .filter(User.id == id).delete()
@@ -71,6 +78,7 @@ class user:
         @staticmethod
         def change_by_id(id: int, username: str = None, password: str = None, first_name: str = None, 
                  second_name: str = None, email: str = None, phone: str = None):
+            """Изменение параметров пользователя по айди"""
             try:
                 user = User.query\
                     .filter(User.id== id).first()
@@ -88,6 +96,7 @@ class user:
         @staticmethod
         def change_by_username(username_first: str, username: str = None, password: str = None, first_name: str = None, 
                  second_name: str = None, email: str = None, phone: str = None):
+            """Изменение параметров пользователя по юзернейму"""
             try:
                 user = User.query\
                     .filter(User.username== username_first).first()
@@ -107,6 +116,7 @@ class user:
         
         @staticmethod
         def add_product(user_id: int, product_id: int):
+            """Добавление товара в корзину"""
             try:
                 cart = CartProduct(user_id, product_id)
                 db.session.add(cart)
@@ -117,6 +127,7 @@ class user:
             
         @staticmethod
         def delete_by_id(id: int):
+            """Удаление товара из корзины по айди"""
             try:
                 cart = CartProduct.query\
                     .filter(CartProduct.id == id).delete()
@@ -127,6 +138,7 @@ class user:
             
         @staticmethod
         def get_by_id(id: int):
+            """Получение данных об корзине по айди"""
             try:
                 cart = CartProduct.query\
                     .filter(CartProduct.id == id).first()
@@ -135,19 +147,21 @@ class user:
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
-        def get_by_user_id(id: int):
+        def get_by_user_id(user_id: int):
+            """Получение данных по корзине по юзер_айди"""
             try:
                 cart = CartProduct.query\
-                    .filter(CartProduct.user_id == id).all()
+                    .filter(CartProduct.user_id == user_id).all()
                 return cart
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
-        def quantity_plus_by_id(id: int):
+        def quantity_plus_by_user_id(user_id: int):
+            """Прибавление кол-во товаров в корзине по юзер_айди"""
             try:
                 cart = CartProduct.query\
-                    .filter(CartProduct.id == id).first()
+                    .filter(CartProduct.user_id == user_id).first()
                 cart.quantity = cart.quantity+1
                 db.session.commit()
                 return True
@@ -155,13 +169,14 @@ class user:
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
-        def quantity_minus_by_id(id: int):
+        def quantity_minus_by_user_id(user_id: int):
+            """Убавление или удаление кол-во товаров в корзине по юзер_айди"""
             try:
                 cart = CartProduct.query\
-                    .filter(CartProduct.id == id).first()
+                    .filter(CartProduct.user_id == user_id).first()
                 if cart.quantity==1:
                     cart = CartProduct.query\
-                    .filter(CartProduct.id == id).delete()
+                    .filter(CartProduct.user_id == user_id).delete()
                     db.session.commit()
                     return True
                 else:
@@ -172,10 +187,11 @@ class user:
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
-        def quantity_change(id: int, number: int):
+        def quantity_change(user_id: int, number: int):
+            """Изменение кол-во товаров в корзине по юзер_айди"""
             try:
                 cart = CartProduct.query\
-                    .filter(CartProduct.id == id).first()
+                    .filter(CartProduct.user_id == user_id).first()
                 if number <= 0:
                     return False
                 else:
@@ -190,6 +206,7 @@ class user:
         
         @staticmethod
         def add_product(user_id: int, product_id: int):
+            """Добавление товара в избранное пользователя"""
             try:
                 favorite = FavoriteProduct(user_id, product_id)
                 db.session.add(favorite)
@@ -200,6 +217,7 @@ class user:
             
         @staticmethod
         def delete_by_id(id: int):
+            """Удаление избранного товара по айди"""
             try:
                 favorite = FavoriteProduct.query\
                     .filter(FavoriteProduct.id == id).delete()
@@ -210,6 +228,7 @@ class user:
             
         @staticmethod
         def get_by_id(id: int):
+            """Получение информации избранного товара по айди"""
             try:
                 favorite = FavoriteProduct.query\
                     .filter(FavoriteProduct.id == id).first()
@@ -218,19 +237,33 @@ class user:
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
-        def get_by_user_id(id: int):
+        def get_by_user_id(user_id: int):
+            """Получение информации избранного товара по юзер_айди"""
             try:
                 favorite = FavoriteProduct.query\
-                    .filter(FavoriteProduct.user_id == id).all()
+                    .filter(FavoriteProduct.user_id == user_id).all()
                 return favorite
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
             
+        @staticmethod
+        def delete_by_user_id(id: int):
+            """Удаление избранного товара по юзер_айди"""
+            try:
+                favorite = FavoriteProduct.query\
+                    .filter(FavoriteProduct.id == id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+
             
     class bd_comment:
         
         @staticmethod
         def add_comment(user_id: int, product_id: int, text: str):
+            """Добавление комментария"""
             try:
                 comment = Comment(user_id, product_id, text)
                 db.session.add(comment)
@@ -241,6 +274,7 @@ class user:
             
         @staticmethod
         def delete_by_id(id: int):
+            """Удаление комментария по айди"""
             try:
                 comment = Comment.query\
                     .filter(Comment.id == id).delete()
@@ -251,6 +285,7 @@ class user:
             
         @staticmethod
         def get_by_id(id: int):
+            """Получение комментария по айди"""
             try:
                 comment = Comment.query\
                     .filter(Comment.id == id).first()
@@ -260,6 +295,7 @@ class user:
         
         @staticmethod
         def get_by_product_id(id: int):
+            """Получение комментария по айди_товара"""
             try:
                 comment = Comment.query\
                     .filter(Comment.product_id == id).all()
@@ -269,6 +305,7 @@ class user:
             
         @staticmethod
         def get_by_user_id(id: int):
+            """Получение комментария по юзер_айди"""
             try:
                 comment = Comment.query\
                     .filter(Comment.user_id == id).all()
@@ -284,6 +321,7 @@ class admin(user):
         
         @staticmethod
         def add_category(name: str, text: str):
+            """Добавление категории"""
             try:
                 category = Category(name, text)
                 db.session.add(category)
@@ -294,6 +332,7 @@ class admin(user):
             
         @staticmethod
         def delete_by_id(id: int):
+            """Удаление категории по айди"""
             try:
                 category = Category.query\
                     .filter(Category.id == id).delete()
@@ -304,15 +343,17 @@ class admin(user):
             
         @staticmethod
         def get_by_id(id: int):
+            """Получение категории по айди"""
             try:
                 category = Category.query\
-                    .filter(Category.id == id).first()
+                    .filter(Category.id == id).all()
                 return category
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
         def get_all():
+            """Получение всех категорий"""
             try:
                 category = Category.query.all()
                 return category
@@ -321,6 +362,7 @@ class admin(user):
             
         @staticmethod
         def change_by_id(id: int, name: str = None, text: str = None):
+            """Изменение данных категории по айди"""
             try:
                 category = Category.query\
                     .filter(Category.id == id).first()
@@ -331,10 +373,13 @@ class admin(user):
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
             
-            
+    # ! Возможно вырезать вторичную и третью категории.
+    # ! Переписать код основной категории с возможностью ссылаться на 
+    # ! самого себя.
     class bd_second_category:
         @staticmethod
         def add_category(name: str, text: str, id: int):
+            """Добавление второй категории"""
             try:
                 category = SecondCategory(name, text, id)
                 db.session.add(category)
@@ -345,6 +390,7 @@ class admin(user):
             
         @staticmethod
         def delete_by_id(id: int):
+            """Удаление второй категории по айди"""
             try:
                 category = SecondCategory.query\
                     .filter(SecondCategory.id == id).delete()
@@ -355,6 +401,7 @@ class admin(user):
             
         @staticmethod
         def get_by_id(id: int):
+            """Получение информации второй категории по айди"""
             try:
                 category = SecondCategory.query\
                     .filter(SecondCategory.id == id).first()
@@ -363,6 +410,7 @@ class admin(user):
                 return f'Произошла ошибка:\n{e}'
             
         def get_by_category_id(id: int):
+            """Получение всех вторых категорий по айди категории"""
             try:
                 category = SecondCategory.query\
                     .filter(SecondCategory.category_id == id).all()
@@ -372,6 +420,7 @@ class admin(user):
             
         @staticmethod
         def change_by_id(id: int, name: str = None, text: str = None, category_id: int = None):
+            """Изменение второй категории по айди"""
             try:
                 category = SecondCategory.query\
                     .filter(SecondCategory.id == id).first()
@@ -383,11 +432,14 @@ class admin(user):
             except Exception as e:
                 return f'Произошла ошибка:\n{e}'
             
-            
+    # ! Возможно вырезать вторичную и третью категории.
+    # ! Переписать код основной категории с возможностью ссылаться на 
+    # ! самого себя.        
     class bd_third_category:
         
         @staticmethod
         def add_category(name: str, text: str, id: int):
+            """Добавление третьей категории"""
             try:
                 category = ThirdCategory(name, text, id)
                 db.session.add(category)
@@ -398,6 +450,7 @@ class admin(user):
             
         @staticmethod
         def delete_by_id(id: int):
+            """Удаление третьей категории по айди"""
             try:
                 category = ThirdCategory.query\
                     .filter(ThirdCategory.id == id).delete()
@@ -408,6 +461,7 @@ class admin(user):
             
         @staticmethod
         def get_by_id(id: int):
+            """Получение информации третьей категории по айди"""
             try:
                 category = ThirdCategory.query\
                     .filter(ThirdCategory.id == id).first()
@@ -417,6 +471,7 @@ class admin(user):
             
         @staticmethod
         def get_by_second_category_id(id: int):
+            """Получение третьих категорий по айди второй категории"""
             try:
                 category = ThirdCategory.query\
                     .filter(ThirdCategory.second_category_id == id).all()
@@ -426,6 +481,7 @@ class admin(user):
             
         @staticmethod
         def change_by_id(id: int, name: str = None, text: str = None, category_id: int = None):
+            """Изменение третьей категории по айди"""
             try:
                 category = ThirdCategory.query\
                     .filter(ThirdCategory.id == id).first()
@@ -439,14 +495,78 @@ class admin(user):
             
             
     class bd_product:
-        # ! b и протестировать с использованием сторонних файлов.
+        # ! сделать и протестировать с использованием сторонних файлов.
         # ! ЖЕЛАТЕЛЬНО написать парсер для днс
-        pass
+        @staticmethod
+        def add_product(third_category_id: int, name: str, description: str, price: int, 
+                 characteristics: str = None, photo: str = None, 
+                 discount: int = 0, quantity: str = None):
+            """Добавление нового товара"""
+            try:
+                product = Product(name, third_category_id, description, characteristics, 
+                               photo, quantity, price, discount)
+                db.session.add(product)
+                db.session.commit()
+                return product
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def get_by_id(id: int):
+            """Получение продукта по айди"""
+            try:
+                product = Product.query\
+                    .filter(Product.id == id).first()
+                return product
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def get_all_by_third_category_id(id: int):
+            """Получение продукта по айди третьей категории"""
+            try:
+                product = Product.query\
+                    .filter(Product.third_category_id == id).all()
+                return product
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def delete_by_id(id: int):
+            """Удаление продукта по айди"""
+            try:
+                product = Product.query\
+                    .filter(Product.id == id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}' 
+            
+        @staticmethod
+        def change_product(id: int, name: str, description: str, price: int, 
+                 characteristics: str = None, photo: str = None, 
+                 discount: int = 0, quantity: str = None):
+            """Изменение параметров продукта по айди"""
+            try:
+                product = Product.query\
+                    .filter(Product.id== id).first()
+                if name: Product.name = name
+                if description: Product.description = description
+                if price: Product.price = price
+                if characteristics: Product.characteristics = characteristics
+                if photo: Product.photo = photo
+                if discount: Product.discount = discount
+                if quantity: Product.quantity = quantity
+                db.session.commit()
+                return product
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'  
+            
     
     
-    
+# ! вырезать данный контекст после финальных добавленией
 if __name__ == "__main__":
     
     with app.app_context():
         pass
-        print(admin.bd_category.get_all())
+        print(admin.bd_comment.get_by_product_id(2))

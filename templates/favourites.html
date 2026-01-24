@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная 
+{% endblock %}
+
+{% block link_css %} 
+    <link rel="stylesheet" href="../static/style/main.css">
+    <link rel="stylesheet" href="../static/style/favourites.css">
+{% endblock %}
+
+
+{% block main %}
+    <main>
+        <h1>Избранное</h1>
+        <div class="products">
+            <img src="../static/images/bananaSEMAX.png" alt="" class="bananaSEMAX">
+            <p>В списке нет избранного</p>
+            <a href="{{url_for('main')}}" class="main">На галвную</a>
+        </div>
+    </main>
+{% endblock %}

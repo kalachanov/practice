@@ -1,0 +1,94 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная 
+{% endblock %}
+
+{% block link_css %} 
+    <link rel="stylesheet" href="../static/style/main.css">
+    <link rel="stylesheet" href="../static/style/product.css">
+{% endblock %}
+
+
+{% block main %}
+
+
+
+
+    <main>
+        <h1>{{products.name}}</h1>
+        <div class="information">
+            <div class="icon"><img class="icon1" src="../static/images/tivi.png"></div>
+            <div class="inf">
+
+                <div class="inf__spec">
+                    <div class="inf__icon">
+                        <div>
+                            {{products.description}}
+                        </div>
+
+                        <div><img class="icon2" src="../static/images/t.png"></div>
+
+                    </div>
+
+                    <div class="star"><p>{{ len_comments }} отзыва</p></div>
+                </div>
+                
+                <div class="many">
+
+                    <div class="rub"><p>{{products.price}} рублей</p></div>
+
+                    <div class="click">
+                        <button class=buy>Купить</button>
+
+                        <button class="like"><img class="image" src="../static/images/like.png"></button>
+                    </div>
+
+                    <div class="text">
+                        <p>Есть в наличии и под заказ: {{products.quantity}}</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="specification">
+            <h2>Технические характеристики:</h2>
+
+            <div class="spec">
+                <p>{{products.characteristics}}</p>
+            </div>
+
+        </div>
+
+        <div class="reviews">
+            <label for="com" class="text">
+                <p>Отзывы о товаре</p>
+            </label>
+            <div class="pole">
+                {%  if session['user_id'] %}
+                <textarea id="com" placeholder="Оставьте комментарий" rows="15" cols="37"></textarea recize>
+                {% endif %}
+                {% for comment in comments %}
+                <div class="reviews__text">
+                    <div>
+                        <p>
+                            {{comment.text}}
+                        </p>
+                        <p>
+                            {{comment.created_at}}
+                        </p>
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+
+    </main>
+
+
+{% endblock %}

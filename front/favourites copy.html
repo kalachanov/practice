@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../static/style/index.css">
-    <link rel="stylesheet" href="../static/style/favorite.css">
+    <link rel="stylesheet" href="../static/style/favourites.css">
 </head>
 <body>
-
     <header>
         <div>
             <a class="a-logo" href="main.html" name="main-logo"><img class="main-logo" src="../static/images/logo.png" alt=""><p>TECH GROUP</p></a>
@@ -24,21 +23,45 @@
             <a class="a-profil" href="profil.html" name="profil"><img class="profil" src="../static/images/profil.png" alt="Профиль"><p>Профиль</p></a>
         </div>
     </header>
-
     <main>
-        <div class="favorite">
-            <h1>Избранное</h1>
-             <div class="products">
-                <div class="product">
+        <h1>Избранное</h1>
+        <section class="product">
+            <div class="left">
+                <img src="../static/images/case.jpg" alt="" class="foto">
+                <div>
+                    <p>Корпус ARDOR GAMING Rare Minicase MS4 белый</p>
+                    <p class="otzuvu">★4.75 | 500 отзывов</p>
                 </div>
-                <p>В списке нет избранного</p>
-                <button>На главную</button>
-             </div>
-        </div>
+            </div>
+            <div class="right">
+                <p class="price">1000 &#8381;</p>
+                <div>
+                    <label for="like"><img src="../static/images/like.png" alt="" class="img_like"></label>
+                    <input type="button" class="like">
+                    <label for="carting"><img src="../static/images/carting.png" alt="" class="img_carting"></label>
+                    <input type="button" class="carting">
+                </div>
+            </div>
+        </section>
+        <section class="product">
+            <div class="left">
+                <img src="../static/images/headphones.jpg" alt="" class="foto">
+                <div>
+                    <p>Наушники TWS HUAWEI FreeBuds Pro 4 зеленый 2025</p>
+                    <p class="otzuvu">★4.75 | 500 отзывов</p>
+                </div>
+            </div>
+            <div class="right">
+                <p class="price">1000 &#8381;</p>
+                <div>
+                    <label for="like"><img src="../static/images/like.png" alt="" class="img_like"></label>
+                    <input type="button" class="like">
+                    <label for="carting"><img src="../static/images/carting.png" alt="" class="img_carting"></label>
+                    <input type="button" class="carting">
+                </div>
+            </div>
+        </section>
     </main>
-
-
-
     <footer>
         <section>
             <div>
@@ -56,6 +79,5 @@
         </section>
         <img class="qr-code" name="qr-code" src="../static/images/qr-code.gif" alt="">
     </footer>
-    
 </body>
 </html>

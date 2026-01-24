@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Главная 
+{% endblock %}
+
+{% block link_css %} 
+    <link rel="stylesheet" href="../static/style/main.css">
+    <link rel="stylesheet" href="../static/style/registration.css">
+{% endblock %}
+
+
+{% block main %}
+    <main>
+        <div class="login">
+            <a class="a-login" href="{{ url_for('login')}}">Вход</a>
+            <a class="a-registration" href="{{ url_for('registration')}}">Регистрация</a>
+        </div>
+        <form action="" method="POST">
+            <label for="name">Имя пользователя</label>
+            <input id="name" type="text" required, name="username">
+            <label for="tel">Телефон</label>
+            <input id="tel" type="tel" require, name="phone">
+            <label for="email">Электронная почта</label>
+            <input id="email" type="email" required, name="email">
+            <label for="password">Пароль</label>
+            <input id="password" type="password" required, name="password">
+            <label for="dublpassword">Повторите пароль</label>
+            <input id="dublpassword" type="dublpassword" required, name="password_double">
+            <input type="submit" value="Войти">
+        </form>
+        <a href="{{url_for('main')}}">
+            <div class="back">
+                Вернуться на главную
+            </div>
+        </a>
+    </main>
+{% endblock %}

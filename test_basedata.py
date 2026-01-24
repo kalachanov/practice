@@ -9,6 +9,6 @@ if __name__ == "__main__":
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = CONFIG.SQLALCHEMY_TRACK_MODIFICATIONS
 
     db.init_app(app)
-    
+    # ! Cоздать отдельную функцию для создании БД
     with app.app_context():
-        print(db.Query(User).filter(User.username == 'Funf').scalar())
+        db.create_all()

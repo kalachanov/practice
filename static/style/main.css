@@ -5,14 +5,14 @@ main{
     align-items: center;
 }
 .blocks{
-    width: 60%;
+    width: 40%;
     display: flex;
     justify-content: space-around;
     margin: 20px;
 }
 div[class^="block"]{
     width: 100px;
-    box-shadow: 0 0 10px 0px #000000;
+    box-shadow: 0 0 10px 0px gray;
     border-radius: 15px;
     padding: 10px;
     height: 170px;
@@ -43,11 +43,9 @@ footer{
 .m1{
     display: contents;
 }
-
 section{
-    margin: 3%;
+    margin: 10px;
 }
-
 .do{
     flex-direction: column;
     align-items: center;
@@ -65,23 +63,30 @@ div[class^="product"]{
     justify-content: space-between;
     width: 300px;
     height: 400px;
-    box-shadow: 0 0 5px 0px #000000;
-    border-radius: 7%;
+    box-shadow: 0 0 5px 0px gray;
+    border-radius: 20px;
     margin: 10px;
     padding: 10px;
 }
 .text{
     color: black;
 }
+.top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .foto{
-    width: 100%;
+    width: 80%;
 }
 .many{
     display: flex;
     justify-content: space-around;
 }
-
-.like, .price, .carting{
+.many input{
+    display: none;
+}
+.img_like, .price, .img_carting{
     width: 50px;
     height: 50px;
     border-radius: 10px;
@@ -91,23 +96,16 @@ div[class^="product"]{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75px;
-    background-color: black;
+    width: 100px;
+    background-color: #383838;
     color: white;
 }
-.like{
-    background-image: url(../images/like.png);
-    background-size: 25px;
-    background-position: 12.5px;
-    background-repeat: no-repeat;
+.img_like, .img_carting{
     cursor: pointer;
-}
-.carting{
-    background-image: url(../images/carting.png);
-    background-size: 25px;
-    background-position: 12.5px;
-    background-repeat: no-repeat;
-    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    margin-left: 10px;
 }
 h1{
     font-size: 32px;

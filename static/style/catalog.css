@@ -1,15 +1,18 @@
 h1{
-    font-size: 40px;
+    font-size: 24px;
 }
 
 main{
-    width: 100%;
+    width: 80%;
+}
+
+main a{
+    color: black;
 }
 
 .Сatalog{
     display: flex;
     flex-direction: column;
-    margin: 10px 20px 10px 20px;
 }
 
 .carts{
@@ -22,126 +25,55 @@ main{
     justify-content: center;
     align-items: center;
     width: 300px;
-    height: 350px;
-    box-shadow: 0 0 10px 1px #000000;
-    border-radius: 7%;
-    margin: 1%;
-    padding: 1%;
+    height: 250px;
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
 }
 
-.icon1{
-    width: 100%;
-    height: 250px;
-    background-image: url(../images/d70b2033b2a99f0e43a9c4ecdbec1b133fd2c42f78664b091a6b1742256b1d6f.jpg.webp);
-    background-size: contain;
-    background-repeat: no-repeat;
+.cart1 img{
+    width: 200px;
+    position: absolute;
 }
 
-.icon2{
-    width: 100%;
-    height: 250px;
-    background-image: url(../images/SapphireAMDRadeonRX7700XTNITRO+.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.icon3{
-    width: 100%;
-    height: 250px;
-    background-image: url(../images/d70b2033b2a99f0e43a9c4ecdbec1b133fd2c42f78664b091a6b1742256b1d6f.jpg.webp);
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.icon4{
-    width: 100%;
-    height: 250px;
-    background-image: url(../images/d70b2033b2a99f0e43a9c4ecdbec1b133fd2c42f78664b091a6b1742256b1d6f.jpg.webp);
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.icon5{
-    width: 100%;
-    height: 250px;
-    background-image: url(../images/d70b2033b2a99f0e43a9c4ecdbec1b133fd2c42f78664b091a6b1742256b1d6f.jpg.webp);
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.text{
-    font-size: 25px;
-    font-weight: bold;
+.cart1 .text{
+    font-size: 16px;
+    font-family: Unbutu bold;
+    margin-top: 80%;
 }
 
 .category{
     display: flex;
     flex-direction: column;
-    margin: 10px 20px 10px 20px;
 }
 
 .popular{
     display: flex;
 }
 
-.popular__product{
+.popular__product {
     display: flex;
     flex-direction: column;
     width: 400px;
-    box-shadow: 0 0 10px 1px #000000;
-    border-radius: 2%;
-    margin: 1%;
-    padding: 1%;
+    box-shadow: 0 0 10px 1px gray;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
 }
 
-p{
-    font-weight: bold;
-}
+.popular__product img {
+    width: 150px;
+    max-height: 150px;
 
+}
 .popular__inf{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 5%;
-}
-
-.popular__icon1{
-    width: 130px;
-    height: 150px;
-    background-image: url(../images/d70b2033b2a99f0e43a9c4ecdbec1b133fd2c42f78664b091a6b1742256b1d6f.jpg.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.popular__icon2{
-    width: 150px;
-    height: 150px;
-    background-image: url(../images/SapphireAMDRadeonRX7700XTNITRO+.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.popular__icon3{
-    width: 130px;
-    height: 150px;
-    background-image: url(../images/d70b2033b2a99f0e43a9c4ecdbec1b133fd2c42f78664b091a6b1742256b1d6f.jpg.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.popular__icon4{
-    width: 130px;
-    height: 150px;
-    background-image: url(../images/d70b2033b2a99f0e43a9c4ecdbec1b133fd2c42f78664b091a6b1742256b1d6f.jpg.webp);
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
 .news{
     display: flex;
     flex-direction: column;
-    margin: 10px 20px 10px 20px;
-
 }
-
-footer{
-    position: relative;
-}
-
