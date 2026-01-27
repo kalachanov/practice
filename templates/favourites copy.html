@@ -13,16 +13,16 @@
 {% block main %}
     <main>
         <h1>Избранное</h1>
+        {% for favorite in favorites %}
         <section class="product">
             <div class="left">
                 <img src="../static/images/case.jpg" alt="" class="foto">
                 <div>
-                    <p>Корпус ARDOR GAMING Rare Minicase MS4 белый</p>
-                    <p class="otzuvu">★4.75 | 500 отзывов</p>
+                    <p>{{favorite.name}}</p>
                 </div>
             </div>
             <div class="right">
-                <p class="price">1000 &#8381;</p>
+                <p class="price">{{favorite.price}} &#8381;</p>
                 <div>
                     <label for="like"><img src="../static/images/like.png" alt="" class="img_like"></label>
                     <input type="button" class="like">
@@ -31,5 +31,6 @@
                 </div>
             </div>
         </section>
+        {% endfor %}
     </main>
 {% endblock %}

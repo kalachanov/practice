@@ -112,16 +112,31 @@ def favorite():
         if not user.bd_favorite_product.get_by_user_id(session['user_id']):
             return render_template('favourites.html')
         else:
+            favorites = []
             favorite_product = user.bd_favorite_product.get_by_user_id(session['user_id'])
-            return render_template('favourites copy.html', favorite_product=favorite_product)
+            for favorite in favorite_product:
+                products = admin.bd_product.get_by_id(favorite.product_id)
+                favorites.append(products)
+            return render_template('favourites copy.html', favorites=favorites)
 
 @app.route('/cart')
 def cart():
     if 'user_id' not in session:
         return redirect(url_for('login'))
     else:
-        pass
-    return render_template('cart.html')
+        if not user.bd_cart_product.get_by_user_id(session['user_id']):
+            return render_template('cart.html')
+        else:
+            carts = []
+            final_price = 0
+            len_product = 0
+            carts_products = user.bd_cart_product.get_by_user_id(session['user_id'])
+            for cart_product in carts_products:
+                products = admin.bd_product.get_by_id(cart_product.product_id)
+                final_price = final_price + products.price
+                len_product = len_product + 1
+                carts.append(products)
+            return render_template('cart copy.html', carts=carts, final_price=final_price, len_product=len_product)
 
 if __name__ == '__main__':
     app.run(debug=True)
