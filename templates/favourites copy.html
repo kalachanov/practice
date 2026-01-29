@@ -18,16 +18,22 @@
             <div class="left">
                 <img src="../static/images/case.jpg" alt="" class="foto">
                 <div>
-                    <p>{{favorite.name}}</p>
+                    <p><a href="{{url_for('product', product_id = favorite.id)}}">{{favorite.name}}</a></p>
                 </div>
             </div>
             <div class="right">
                 <p class="price">{{favorite.price}} &#8381;</p>
                 <div>
-                    <label for="like"><img src="../static/images/like.png" alt="" class="img_like"></label>
-                    <input type="button" class="like">
-                    <label for="carting"><img src="../static/images/carting.png" alt="" class="img_carting"></label>
-                    <input type="button" class="carting">
+                    <form action="" method="POST">
+                        <input type="hidden", name="action", value="favorite">
+                        <input type="hidden", name="value", value="{{favorite.id}}">
+                        <button for="like" type="submit" action="favorite" name="favorite" value="{{favorite.id}}" class="like"><img src="../static/images/like.png" alt="" class="img_like"></button>
+                    </form>
+                    <form action="" method="POST">
+                        <input type="hidden", name="action", value="cart">
+                        <input type="hidden", name="value", value="{{favorite.id}}">
+                        <button for="carting" type="submit" action="cart" name="cart" value="{{favorite.id}}" class="carting"><img src="../static/images/carting.png" alt="" class="img_carting"></button>
+                    </form>
                 </div>
             </div>
         </section>

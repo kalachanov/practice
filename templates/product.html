@@ -39,9 +39,16 @@
                     <div class="rub"><p>{{products.price}} рублей</p></div>
 
                     <div class="click">
-                        <button class=buy>Купить</button>
-
-                        <button class="like"><img class="image" src="../static/images/like.png"></button>
+                    <form action="" method="POST">
+                        <input type="hidden", name="action", value="favorite">
+                        <input type="hidden", name="value", value="{{products.id}}">
+                        <button for="like" type="submit" action="favorite" name="favorite" value="{{products.id}}" class="like"><img src="../static/images/like.png" alt="" class="img_like"></button>
+                    </form>
+                    <form action="" method="POST">
+                        <input type="hidden", name="action", value="cart">
+                        <input type="hidden", name="value", value="{{products.id}}">
+                        <button for="carting" type="submit" action="cart" name="cart" value="{{products.id}}" class="buy">Купить</button>
+                    </form>
                     </div>
 
                     <div class="text">

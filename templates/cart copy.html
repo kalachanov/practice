@@ -19,16 +19,22 @@
                 <div class="left">
                     <img src="../static/images/case.jpg" alt="" class="foto">
                     <div>
-                        <p>{{cart.name}}</p>
+                        <p><a href="{{url_for('product', product_id = cart.id)}}">{{cart.name}}</a></p>
                     </div>
                 </div>
                 <div class="right">
                     <p class="price">{{cart.price}} &#8381;</p>
                     <div>
-                        <label for="like"><img src="../static/images/like.png" alt="" class="img_like"></label>
-                        <input type="button" class="like">
-                        <label for="carting"><img src="../static/images/mycop.png" alt="" class="img_carting"></label>
-                        <input type="button" class="carting">
+                        <form action="" method="POST">
+                        <input type="hidden", name="action", value="favorite">
+                        <input type="hidden", name="value", value="{{cart.id}}">
+                        <button for="like" type="submit" action="favorite" name="favorite" value="{{cart.id}}" class="like"><img src="../static/images/like.png" alt="" class="img_like"></button>
+                    </form>
+                    <form action="" method="POST">
+                        <input type="hidden", name="action", value="cart">
+                        <input type="hidden", name="value", value="{{cart.id}}">
+                        <button for="carting" type="submit" action="cart" name="cart" value="{{cart.id}}" class="carting"><label for="carting"><img src="../static/images/mycop.png" alt="" class="img_carting"></label></button>
+                    </form>
                     </div>
                 </div>
             </section>

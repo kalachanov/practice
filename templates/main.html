@@ -46,11 +46,18 @@
                     </a>
                     <div class="many">
                         <p class="price">{{ product.price }} &#8381;</p>
-                        <div>
-                            <label for="like"><img src="../static/images/like.png" alt="" class="img_like"></label>
-                            <input type="button" class="like">
-                            <label for="carting"><img src="../static/images/carting.png" alt="" class="img_carting"></label>
-                            <input type="button" class="carting">
+                    <div>
+                    <form action="" method="POST">
+                        <input type="hidden", name="action", value="favorite">
+                        <input type="hidden", name="value", value="{{product.id}}">
+                        <button for="like" type="submit" action="favorite" name="favorite" value="{{product.id}}" class="like"><img src="../static/images/like.png" alt="" class="img_like"></button>
+                    </form>
+                    <form action="" method="POST">
+                        <input type="hidden", name="action", value="cart">
+                        <input type="hidden", name="value", value="{{product.id}}">
+                        <button for="carting" type="submit" action="cart" name="cart" value="{{product.id}}" class="carting"><img src="../static/images/carting.png" alt="" class="img_carting"></button>
+                    </form>
+
                         </div>
                     </div>
                 </div>

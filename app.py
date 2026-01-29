@@ -4,11 +4,33 @@ from func_bd import app, user, admin
 # ! Основной код проекта
 @app.route('/', methods = ["POST", "GET"])
 def main():
+    if request.method == 'POST':
+        action = request.form.get('action')
+        if action == 'favorite':
+            print('fav')
+            value = request.form.get('value')
+            user.bd_favorite_product.add_product(session['user_id'], value)
+        if action == 'cart':
+            print('car')
+            value = request.form.get('value')
+            user.bd_cart_product.add_product(session['user_id'], value)
+            pass
     products = admin.bd_product.get_all_by_third_category_id(1)
     return render_template('main.html', products = products)
 
-@app.route('/product/<int:product_id>')
+@app.route('/product/<int:product_id>', methods = ["POST", "GET"])
 def product(product_id = None):
+    if request.method == 'POST':
+            action = request.form.get('action')
+            if action == 'favorite':
+                print('fav')
+                value = request.form.get('value')
+                user.bd_favorite_product.add_product(session['user_id'], value)
+            if action == 'cart':
+                print('car')
+                value = request.form.get('value')
+                user.bd_cart_product.add_product(session['user_id'], value)
+                pass
     if product_id:
         products = admin.bd_product.get_by_id(product_id)
         comments = admin.bd_comment.get_by_product_id(product_id)
@@ -22,7 +44,7 @@ def catalog(catalog_id = None ):
     if catalog_id:
         catalogs = admin.bd_category.get_by_id(catalog_id)
         second_catalogs = admin.bd_second_category.get_by_category_id(catalog_id)
-        return render_template('catalog.html', catalogs=catalogs, second_catalogs=second_catalogs)
+        return render_template('catalog.html', catalogs=catalogs, second_catalogs=second_catalogs, catalog_id=catalog_id)
     else:
         catalogs = admin.bd_category.get_all()
         # category_id = 1 популярные продукты
@@ -34,12 +56,25 @@ def catalog(catalog_id = None ):
 def second_catalog(second_catalog_id):
     catalogs = admin.bd_second_category.get_by_id(second_catalog_id)
     second_catalogs = admin.bd_third_category.get_by_second_category_id(second_catalog_id)
-    return render_template('catalog copy.html', catalogs=catalogs, second_catalogs=second_catalogs)
+    return render_template('catalog copy.html', catalogs=catalogs, second_catalogs=second_catalogs, second_catalog_id=second_catalog_id)
 
-@app.route('/third_catalog/<int:third_catalog_id>')
+@app.route('/third_catalog/<int:third_catalog_id>', methods = ["POST", "GET"])
 def third_catalog(third_catalog_id):
     catalogs = admin.bd_third_category.get_by_id(third_catalog_id)
     products = admin.bd_product.get_all_by_third_category_id(third_catalog_id)
+
+    if request.method == 'POST':
+        action = request.form.get('action')
+        if action == 'favorite':
+            print('fav')
+            value = request.form.get('value')
+            user.bd_favorite_product.add_product(session['user_id'], value)
+        if action == 'cart':
+            print('car')
+            value = request.form.get('value')
+            user.bd_cart_product.add_product(session['user_id'], value)
+            pass
+        
     return render_template('sale.html', catalogs=catalogs, products=products)
         
 
@@ -104,11 +139,23 @@ def profile():
         get_user = user.bd_user.get_by_id(session['user_id'])
     return render_template('profil.html', get_user=get_user)
 
-@app.route('/favourites')
+@app.route('/favourites', methods = ["POST", "GET"])
 def favorite():
     if 'user_id' not in session:
         return redirect(url_for('login'))
     else:
+        if request.method == 'POST':
+            action = request.form.get('action')
+            if action == 'favorite':
+                print('fav')
+                value = request.form.get('value')
+                user.bd_favorite_product.add_product(session['user_id'], value)
+            if action == 'cart':
+                print('car')
+                value = request.form.get('value')
+                user.bd_cart_product.add_product(session['user_id'], value)
+                pass
+            
         if not user.bd_favorite_product.get_by_user_id(session['user_id']):
             return render_template('favourites.html')
         else:
@@ -119,7 +166,7 @@ def favorite():
                 favorites.append(products)
             return render_template('favourites copy.html', favorites=favorites)
 
-@app.route('/cart')
+@app.route('/cart', methods = ["POST", "GET"])
 def cart():
     if 'user_id' not in session:
         return redirect(url_for('login'))
@@ -127,6 +174,18 @@ def cart():
         if not user.bd_cart_product.get_by_user_id(session['user_id']):
             return render_template('cart.html')
         else:
+            if request.method == 'POST':
+                action = request.form.get('action')
+                if action == 'favorite':
+                    print('fav')
+                    value = request.form.get('value')
+                    user.bd_favorite_product.add_product(value, session['user_id'])
+                if action == 'cart':
+                    print('car')
+                    value = request.form.get('value')
+                    user.bd_cart_product.delete_by_user_id_and_product_id(session['user_id'], value)
+                    pass
+
             carts = []
             final_price = 0
             len_product = 0

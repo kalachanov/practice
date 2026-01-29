@@ -137,6 +137,17 @@ class user:
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
+        def delete_by_user_id_and_product_id(user_id: int, product_id: int):
+            """Удаление товара из корзины по айди"""
+            try:
+                cart = CartProduct.query\
+                    .filter(CartProduct.user_id == user_id).filter(CartProduct.product_id == product_id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
         def get_by_id(id: int):
             """Получение данных об корзине по айди"""
             try:
@@ -221,6 +232,17 @@ class user:
             try:
                 favorite = FavoriteProduct.query\
                     .filter(FavoriteProduct.id == id).delete()
+                db.session.commit()
+                return True
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
+        def delete_by_product_id_and_user_id(product_id: int, user_id: int):
+            """Удаление избранного товара по айди"""
+            try:
+                favorite = FavoriteProduct.query\
+                    .filter(FavoriteProduct.product_id == product_id).filter(FavoriteProduct.user_id == user_id).delete()
                 db.session.commit()
                 return True
             except Exception as e:
