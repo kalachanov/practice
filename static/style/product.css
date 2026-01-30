@@ -42,7 +42,7 @@ main{
 
 .inf__icon{
     display: flex;
-    justify-content: space-between  ;
+    justify-content: space-between;
 }
 
 .icon1{
@@ -86,7 +86,8 @@ main{
 
 .click{
     display: flex;
-    
+    justify-content: space-around;
+    align-items: center;
 }
 
 .buy{
