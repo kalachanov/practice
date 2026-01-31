@@ -20,7 +20,8 @@ def main():
             else:
                 print('car')
                 value = request.form.get('value')
-                user.bd_cart_product.add_product(session['user_id'], value)
+                if not user.bd_cart_product.get_by_user_id_product_id(session['user_id'], value):
+                    user.bd_cart_product.add_product(session['user_id'], value)
                 pass
     products = admin.bd_product.get_all_by_third_category_id(1)
     return render_template('main.html', products = products)
@@ -43,7 +44,8 @@ def product(product_id = None):
                 else:
                     print('car')
                     value = request.form.get('value')
-                    user.bd_cart_product.add_product(session['user_id'], value)
+                    if not user.bd_cart_product.get_by_user_id_product_id(session['user_id'], value):
+                        user.bd_cart_product.add_product(session['user_id'], value)
                     pass
             if action == 'commit':
                 value = request.form.get('commit')
@@ -98,7 +100,8 @@ def third_catalog(third_catalog_id):
             else:
                 print('car')
                 value = request.form.get('value')
-                user.bd_cart_product.add_product(session['user_id'], value)
+                if not user.bd_cart_product.get_by_user_id_product_id(session['user_id'], value):
+                    user.bd_cart_product.add_product(session['user_id'], value)
                 pass
         
     return render_template('sale.html', catalogs=catalogs, products=products)
@@ -179,7 +182,8 @@ def favorite():
             if action == 'cart':
                 print('car')
                 value = request.form.get('value')
-                user.bd_cart_product.add_product(session['user_id'], value)
+                if not user.bd_cart_product.get_by_user_id_product_id(session['user_id'], value):
+                    user.bd_cart_product.add_product(session['user_id'], value)
                 pass
             
         if not user.bd_favorite_product.get_by_user_id(session['user_id']):
@@ -211,7 +215,7 @@ def cart():
                     print('car')
                     value = request.form.get('value')
                     user.bd_cart_product.delete_by_user_id_and_product_id(session['user_id'], value)
-                    pass
+                    return render_template('cart.html')
 
             carts = []
             final_price = 0

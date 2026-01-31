@@ -180,6 +180,16 @@ class user:
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
+        def get_by_user_id_product_id(user_id: int, product_id: int):
+            """Получение информации избранного товара по юзер_айди"""
+            try:
+                cart = CartProduct.query\
+                    .filter(CartProduct.user_id == user_id).filter(CartProduct.product_id == product_id).first()
+                return cart
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'    
+            
+        @staticmethod
         def quantity_minus_by_user_id(user_id: int):
             """Убавление или удаление кол-во товаров в корзине по юзер_айди"""
             try:
