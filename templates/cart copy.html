@@ -17,7 +17,7 @@
             {% for cart in carts %}
             <section class="product">
                 <div class="left">
-                    <img src="../static/images/case.jpg" alt="" class="foto">
+                    <img src="{{cart.photo}}" alt="" class="foto">
                     <div>
                         <p><a href="{{url_for('product', product_id = cart.id)}}">{{cart.name}}</a></p>
                     </div>
