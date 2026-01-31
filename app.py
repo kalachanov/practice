@@ -46,7 +46,7 @@ def product(product_id = None):
                     value = request.form.get('value')
                     if not user.bd_cart_product.get_by_user_id_product_id(session['user_id'], value):
                         user.bd_cart_product.add_product(session['user_id'], value)
-                    pass
+                    return render_template('cart.html')
             if action == 'commit':
                 value = request.form.get('commit')
                 user.bd_comment.add_comment(session['user_id'], product_id, value)
@@ -215,7 +215,7 @@ def cart():
                     print('car')
                     value = request.form.get('value')
                     user.bd_cart_product.delete_by_user_id_and_product_id(session['user_id'], value)
-                    return render_template('cart.html')
+                    
 
             carts = []
             final_price = 0
