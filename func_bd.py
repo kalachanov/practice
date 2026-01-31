@@ -269,6 +269,16 @@ class user:
                 return f'Произошла ошибка:\n{e}'
             
         @staticmethod
+        def get_by_user_id_product_id(user_id: int, product_id: int):
+            """Получение информации избранного товара по юзер_айди"""
+            try:
+                favorite = FavoriteProduct.query\
+                    .filter(FavoriteProduct.user_id == user_id).filter(FavoriteProduct.product_id == product_id).first()
+                return favorite
+            except Exception as e:
+                return f'Произошла ошибка:\n{e}'
+            
+        @staticmethod
         def delete_by_user_id(id: int):
             """Удаление избранного товара по юзер_айди"""
             try:

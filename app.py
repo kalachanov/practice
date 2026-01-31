@@ -12,7 +12,8 @@ def main():
             else:
                 print('fav')
                 value = request.form.get('value')
-                user.bd_favorite_product.add_product(session['user_id'], value)
+                if not user.bd_favorite_product.get_by_user_id_product_id(session['user_id'], value):
+                    user.bd_favorite_product.add_product(session['user_id'], value)
         if action == 'cart':
             if 'user_id' not in session:
                 return redirect(url_for('login'))
@@ -34,7 +35,8 @@ def product(product_id = None):
                 else:
                     print('fav')
                     value = request.form.get('value')
-                    user.bd_favorite_product.add_product(session['user_id'], value)
+                    if not user.bd_favorite_product.get_by_user_id_product_id(session['user_id'], value):
+                        user.bd_favorite_product.add_product(session['user_id'], value)
             if action == 'cart':
                 if 'user_id' not in session:
                     return redirect(url_for('login'))
@@ -88,7 +90,8 @@ def third_catalog(third_catalog_id):
             else:
                 print('fav')
                 value = request.form.get('value')
-                user.bd_favorite_product.add_product(session['user_id'], value)
+                if not user.bd_favorite_product.get_by_user_id_product_id(session['user_id'], value):
+                    user.bd_favorite_product.add_product(session['user_id'], value)
         if action == 'cart':
             if 'user_id' not in session:
                     return redirect(url_for('login'))
@@ -202,7 +205,8 @@ def cart():
                 if action == 'favorite':
                     print('fav')
                     value = request.form.get('value')
-                    user.bd_favorite_product.add_product(value, session['user_id'])
+                    if not user.bd_favorite_product.get_by_user_id_product_id(session['user_id'], value):
+                        user.bd_favorite_product.add_product(value, session['user_id'])
                 if action == 'cart':
                     print('car')
                     value = request.form.get('value')
