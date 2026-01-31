@@ -7,14 +7,20 @@ def main():
     if request.method == 'POST':
         action = request.form.get('action')
         if action == 'favorite':
-            print('fav')
-            value = request.form.get('value')
-            user.bd_favorite_product.add_product(session['user_id'], value)
+            if 'user_id' not in session:
+                return redirect(url_for('login'))
+            else:
+                print('fav')
+                value = request.form.get('value')
+                user.bd_favorite_product.add_product(session['user_id'], value)
         if action == 'cart':
-            print('car')
-            value = request.form.get('value')
-            user.bd_cart_product.add_product(session['user_id'], value)
-            pass
+            if 'user_id' not in session:
+                return redirect(url_for('login'))
+            else:
+                print('car')
+                value = request.form.get('value')
+                user.bd_cart_product.add_product(session['user_id'], value)
+                pass
     products = admin.bd_product.get_all_by_third_category_id(1)
     return render_template('main.html', products = products)
 
@@ -23,14 +29,25 @@ def product(product_id = None):
     if request.method == 'POST':
             action = request.form.get('action')
             if action == 'favorite':
-                print('fav')
-                value = request.form.get('value')
-                user.bd_favorite_product.add_product(session['user_id'], value)
+                if 'user_id' not in session:
+                    return redirect(url_for('login'))
+                else:
+                    print('fav')
+                    value = request.form.get('value')
+                    user.bd_favorite_product.add_product(session['user_id'], value)
             if action == 'cart':
-                print('car')
-                value = request.form.get('value')
-                user.bd_cart_product.add_product(session['user_id'], value)
-                pass
+                if 'user_id' not in session:
+                    return redirect(url_for('login'))
+                else:
+                    print('car')
+                    value = request.form.get('value')
+                    user.bd_cart_product.add_product(session['user_id'], value)
+                    pass
+            if action == 'commit':
+                value = request.form.get('commit')
+                user.bd_comment.add_comment(session['user_id'], product_id, value)
+                
+                
     if product_id:
         products = admin.bd_product.get_by_id(product_id)
         comments = admin.bd_comment.get_by_product_id(product_id)
@@ -66,14 +83,20 @@ def third_catalog(third_catalog_id):
     if request.method == 'POST':
         action = request.form.get('action')
         if action == 'favorite':
-            print('fav')
-            value = request.form.get('value')
-            user.bd_favorite_product.add_product(session['user_id'], value)
+            if 'user_id' not in session:
+                    return redirect(url_for('login'))
+            else:
+                print('fav')
+                value = request.form.get('value')
+                user.bd_favorite_product.add_product(session['user_id'], value)
         if action == 'cart':
-            print('car')
-            value = request.form.get('value')
-            user.bd_cart_product.add_product(session['user_id'], value)
-            pass
+            if 'user_id' not in session:
+                    return redirect(url_for('login'))
+            else:
+                print('car')
+                value = request.form.get('value')
+                user.bd_cart_product.add_product(session['user_id'], value)
+                pass
         
     return render_template('sale.html', catalogs=catalogs, products=products)
         
@@ -149,7 +172,7 @@ def favorite():
             if action == 'favorite':
                 print('fav')
                 value = request.form.get('value')
-                user.bd_favorite_product.add_product(session['user_id'], value)
+                user.bd_favorite_product.delete_by_product_id_and_user_id(value, session['user_id'])
             if action == 'cart':
                 print('car')
                 value = request.form.get('value')
