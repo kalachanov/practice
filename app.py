@@ -46,7 +46,7 @@ def product(product_id = None):
                     value = request.form.get('value')
                     if not user.bd_cart_product.get_by_user_id_product_id(session['user_id'], value):
                         user.bd_cart_product.add_product(session['user_id'], value)
-                        return render_template('cart.html')
+                        return redirect(url_for('cart'))
             if action == 'commit':
                 value = request.form.get('commit')
                 user.bd_comment.add_comment(session['user_id'], product_id, value)
