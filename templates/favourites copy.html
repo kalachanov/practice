@@ -16,7 +16,7 @@
         {% for favorite in favorites %}
         <section class="product">
             <div class="left">
-                <img src="../static/images/case.jpg" alt="" class="foto">
+                <img src="{{favorite.photo}}" alt="" class="foto">
                 <div>
                     <p><a href="{{url_for('product', product_id = favorite.id)}}">{{favorite.name}}</a></p>
                 </div>
